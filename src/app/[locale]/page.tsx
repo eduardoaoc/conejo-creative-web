@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import { Hero } from '@/components/sections/Hero';
-import { ServicesPreview } from '@/components/sections/ServicesPreview';
+import { Home } from '@/components/pages/Home';
 import { createPageMetadata } from '@/lib/metadata';
 
 type PageProps = {
@@ -17,10 +16,5 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return (
-    <>
-      <Hero />
-      <ServicesPreview />
-    </>
-  );
+  return <Home />;
 }
