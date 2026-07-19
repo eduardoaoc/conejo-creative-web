@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "default": {
+      "title": "ConejoCreative — Your leap to success",
+      "description": "Digital transformation company specialising in web development, custom software, automation, integrations and digital solutions for businesses."
+    },
+    "home": {
+      "title": "Digital transformation and web development",
+      "description": "We design and build professional websites, custom software and automations that drive your company's growth."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Web development, custom software, process automation, integrations, business systems and artificial intelligence solutions."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Success stories and digital transformation projects delivered by ConejoCreative."
+    },
+    "about": {
+      "title": "About us",
+      "description": "Meet the ConejoCreative team and how we work: closeness, quality and transparency in every digital project."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Tell us about your project and we will reply within 48 business hours. Take your leap to success with ConejoCreative."
+    }
+  },
+  "layout": {
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "main": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "about": "About us",
+    "contact": "Contact"
+  },
+  "localeSwitcher": {
+    "label": "Language",
+    "es": "Español",
+    "pt": "Português (Brasil)",
+    "en": "English"
+  },
+  "footer": {
+    "slogan": "Your leap to success.",
+    "description": "Digital transformation company specialising in web development, custom software, automation and integrations for businesses.",
+    "navTitle": "Navigation",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Digital transformation",
+      "title": "Your leap to success.",
+      "description": "At ConejoCreative we design and build professional websites, custom software and automations that grow your business. Technology made for companies that want to move forward.",
+      "primaryCta": "Tell us about your project",
+      "secondaryCta": "View services"
+    },
+    "services": {
+      "title": "What we can do for your company",
+      "description": "We combine strategy, design and technology to build digital solutions that truly work.",
+      "cta": "All services",
+      "items": {
+        "web": {
+          "title": "Web development",
+          "description": "Professional, fast, SEO-ready websites that turn visitors into customers."
+        },
+        "software": {
+          "title": "Custom software",
+          "description": "Applications designed around your real processes, without the limits of generic tools."
+        },
+        "automation": {
+          "title": "Automation",
+          "description": "We remove repetitive work by connecting your tools and automating your workflows."
+        },
+        "ai": {
+          "title": "Artificial intelligence",
+          "description": "AI solutions applied to concrete use cases that bring measurable value to your business."
+        }
+      }
+    }
+  },
+  "services": {
+    "title": "Services",
+    "description": "We support your company across the whole digital cycle: from your first website to complete business systems.",
+    "items": {
+      "web": {
+        "title": "Web development",
+        "description": "Modern, fast and accessible websites, built with current technology and optimised for search engines."
+      },
+      "sites": {
+        "title": "Professional websites",
+        "description": "A corporate digital presence that builds trust and represents your brand with quality."
+      },
+      "software": {
+        "title": "Custom software",
+        "description": "Applications designed from scratch for your processes, with a scalable and maintainable architecture."
+      },
+      "automation": {
+        "title": "Process automation",
+        "description": "Automated workflows that reduce errors and free up your team's time."
+      },
+      "integrations": {
+        "title": "Integrations",
+        "description": "We connect your tools — CRM, ERP, invoicing, marketing — so they work as a single system."
+      },
+      "systems": {
+        "title": "Business systems",
+        "description": "Internal management platforms adapted to how your company actually operates."
+      },
+      "ai": {
+        "title": "Artificial intelligence solutions",
+        "description": "Assistants, analytics and intelligent automations applied to concrete business problems."
+      },
+      "transformation": {
+        "title": "Digital transformation",
+        "description": "Strategy and guidance to digitalise your company step by step, with measurable results."
+      }
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Every project is a leap: here we will gather the cases where we helped companies grow with technology.",
+    "comingSoon": {
+      "title": "Success stories in preparation",
+      "description": "We are documenting our first success stories. Very soon you will find real projects here, with context, solution and results."
+    },
+    "process": {
+      "title": "How we work",
+      "steps": {
+        "discovery": {
+          "title": "Discovery",
+          "description": "We listen, analyse your processes and define the project goals together."
+        },
+        "build": {
+          "title": "Design and development",
+          "description": "We build the solution with frequent deliveries so you see progress from day one."
+        },
+        "launch": {
+          "title": "Launch and improvement",
+          "description": "We ship, measure and keep improving the product with real data."
+        }
+      }
+    },
+    "cta": "Let's talk about your project"
+  },
+  "about": {
+    "title": "About us",
+    "description": "We are ConejoCreative, a digital transformation company that helps other companies take their leap to success.",
+    "mission": {
+      "title": "Our mission",
+      "description": "To bring quality technology closer to companies that want to grow. We believe a good digital product is not a luxury: it is the foundation for competing today. That is why we work closely with our clients, speak plainly and build solutions they understand and control."
+    },
+    "values": {
+      "title": "Our values",
+      "items": {
+        "closeness": {
+          "title": "Closeness",
+          "description": "We speak your language, not just the technical one. Every project has direct contacts and constant communication."
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "We care about the details in code, design and performance. What we deliver is built to last."
+        },
+        "transparency": {
+          "title": "Transparency",
+          "description": "Clear budgets, realistic timelines and explained decisions. No surprises, no small print."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Tell us what you need and we will propose the best way to get there.",
+    "responseNote": "We reply within 48 business hours.",
+    "form": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "service": "Service you are interested in",
+      "servicePlaceholder": "Select a service",
+      "services": {
+        "web": "Web development",
+        "software": "Custom software",
+        "automation": "Automation",
+        "integrations": "Integrations",
+        "ai": "Artificial intelligence",
+        "other": "Other"
+      },
+      "message": "Message",
+      "consent": "I have read and accept the privacy policy and the processing of my data to answer my request.",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "success": {
+        "title": "Message sent!",
+        "description": "Thank you for writing to us. We will reply within 48 business hours.",
+        "again": "Send another message"
+      },
+      "errors": {
+        "name": "Enter your name (at least 2 characters).",
+        "company": "Enter your company name.",
+        "email": "Enter a valid email address.",
+        "phone": "Enter a valid phone number.",
+        "service": "Select a service.",
+        "message": "Tell us a bit more (at least 10 characters).",
+        "consent": "You must accept the privacy policy."
+      }
+    }
+  }
+}

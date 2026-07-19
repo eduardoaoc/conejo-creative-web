@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soporte y formación — ConejoCreative</title>
+  <meta name="description" content="Soporte humano, formación práctica y evolución tecnológica para empresas.">
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #01070e;
+    }
+  </style>
+</head>
+<body>
+<!--
+  Sección 10 — Soporte y formación
+  Diseñada para encajar con el sistema visual de ConejoCreative.
+-->
+<style>
+  .cc-support,
+  .cc-support * {
+    box-sizing: border-box;
+  }
+
+  .cc-support {
+    --cc-support-bg: #01070e;
+    --cc-support-bg-soft: #03121d;
+    --cc-support-card: rgba(8, 26, 39, .94);
+    --cc-support-card-strong: rgba(11, 34, 49, .98);
+    --cc-support-white: #f5fbff;
+    --cc-support-muted: rgba(218, 235, 245, .67);
+    --cc-support-blue: #36b7f0;
+    --cc-support-blue-soft: #8ee9ff;
+    --cc-support-border: rgba(142, 233, 255, .16);
+
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--cc-support-white);
+    background:
+      linear-gradient(
+        180deg,
+        #01070e 0%,
+        #020b13 9%,
+        #03131f 42%,
+        #02101a 75%,
+        #01070e 100%
+      );
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .cc-support::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 8%, rgba(54, 183, 240, .10), transparent 30%),
+      radial-gradient(circle at 16% 56%, rgba(54, 183, 240, .055), transparent 25%),
+      radial-gradient(circle at 86% 54%, rgba(142, 233, 255, .055), transparent 24%);
+  }
+
+  .cc-support::after {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    pointer-events: none;
+    opacity: .024;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.94'/%3E%3C/svg%3E");
+  }
+
+  .cc-support__inner {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 126px 0 104px;
+  }
+
+  .cc-support__header {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto 62px;
+    text-align: center;
+  }
+
+  .cc-support__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 18px;
+    color: var(--cc-support-blue-soft);
+  }
+
+  .cc-support__mark {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 16px rgba(54, 183, 240, .26));
+  }
+
+  .cc-support__eyebrow span {
+    color: rgba(224, 240, 249, .68);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-support__title {
+    margin: 0;
+    color: var(--cc-support-white);
+    font-size: clamp(48px, 5.4vw, 74px);
+    line-height: .98;
+    font-weight: 520;
+    letter-spacing: -.06em;
+    text-wrap: balance;
+  }
+
+  .cc-support__title em {
+    color: var(--cc-support-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.03em;
+    font-weight: 400;
+    letter-spacing: -.05em;
+  }
+
+  .cc-support__intro {
+    max-width: 760px;
+    margin: 24px auto 0;
+    color: var(--cc-support-muted);
+    font-size: 16px;
+    line-height: 1.57;
+    letter-spacing: -.017em;
+    text-wrap: balance;
+  }
+
+  .cc-support__intro strong {
+    color: rgba(242, 250, 255, .94);
+    font-weight: 620;
+  }
+
+  .cc-support__grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.05fr 1.05fr .8fr;
+    grid-template-rows: 190px 250px;
+    gap: 16px;
+  }
+
+  .cc-support-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--cc-support-border);
+    border-radius: 20px;
+    background:
+      linear-gradient(145deg, rgba(15, 43, 60, .92), var(--cc-support-card));
+    box-shadow:
+      0 24px 64px rgba(0, 0, 0, .27),
+      inset 0 1px 0 rgba(255, 255, 255, .03);
+    transition:
+      transform .28s ease,
+      border-color .28s ease,
+      box-shadow .28s ease;
+  }
+
+  .cc-support-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(142, 233, 255, .28);
+    box-shadow:
+      0 31px 74px rgba(0, 0, 0, .34),
+      0 0 28px rgba(54, 183, 240, .065),
+      inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+
+  .cc-support-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(135deg, rgba(142, 233, 255, .08), transparent 35%);
+  }
+
+  .cc-support-card--human {
+    grid-row: 1 / 3;
+  }
+
+  .cc-support-card--training {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cc-support-card--clear {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+
+  .cc-support-card--evolution {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .cc-support-card__visual {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cc-support-card__content {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 25px 25px 24px;
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(2, 10, 17, .12) 18%,
+        rgba(2, 10, 17, .82) 58%,
+        rgba(2, 10, 17, .97) 100%
+      );
+  }
+
+  .cc-support-card--training .cc-support-card__content {
+    top: 0;
+    bottom: auto;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(2, 10, 17, .97) 0%,
+        rgba(2, 10, 17, .88) 55%,
+        rgba(2, 10, 17, .18) 100%
+      );
+  }
+
+  .cc-support-card__icon {
+    width: 31px;
+    height: 31px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 14px;
+    border: 1px solid rgba(142, 233, 255, .16);
+    border-radius: 10px;
+    color: var(--cc-support-blue-soft);
+    background: rgba(5, 21, 32, .72);
+    box-shadow: 0 0 18px rgba(54, 183, 240, .08);
+  }
+
+  .cc-support-card__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cc-support-card__title {
+    margin: 0;
+    color: var(--cc-support-white);
+    font-size: 22px;
+    line-height: 1.06;
+    font-weight: 610;
+    letter-spacing: -.04em;
+  }
+
+  .cc-support-card__text {
+    margin: 10px 0 0;
+    color: var(--cc-support-muted);
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: -.013em;
+  }
+
+  .cc-support-card__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(8px);
+  }
+
+  .cc-support-card--human .cc-support-card__glow {
+    top: 54px;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    transform: translateX(-50%);
+    background: rgba(54, 183, 240, .11);
+  }
+
+  .cc-support-people {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    width: 190px;
+    height: 190px;
+    transform: translateX(-50%);
+  }
+
+  .cc-support-people__person {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(142, 233, 255, .55);
+    border-radius: 50%;
+    color: var(--cc-support-blue-soft);
+    background:
+      radial-gradient(circle at 35% 30%, rgba(142, 233, 255, .22), transparent 44%),
+      #061822;
+    box-shadow:
+      0 0 0 7px rgba(54, 183, 240, .035),
+      0 0 26px rgba(54, 183, 240, .14);
+  }
+
+  .cc-support-people__person svg {
+    width: 42%;
+    height: 42%;
+  }
+
+  .cc-support-people__person--main {
+    top: 34px;
+    left: 53px;
+    width: 84px;
+    height: 84px;
+  }
+
+  .cc-support-people__person--left {
+    top: 95px;
+    left: 14px;
+    width: 55px;
+    height: 55px;
+  }
+
+  .cc-support-people__person--right {
+    top: 95px;
+    right: 14px;
+    width: 55px;
+    height: 55px;
+  }
+
+  .cc-support-training {
+    position: absolute;
+    top: 34px;
+    right: 34px;
+    width: 150px;
+    height: 115px;
+  }
+
+  .cc-support-training__screen {
+    position: absolute;
+    inset: 0 0 18px;
+    border: 1px solid rgba(142, 233, 255, .24);
+    border-radius: 12px;
+    background:
+      linear-gradient(145deg, rgba(54, 183, 240, .15), rgba(4, 18, 28, .88));
+    box-shadow: 0 20px 35px rgba(0, 0, 0, .26);
+  }
+
+  .cc-support-training__screen::before,
+  .cc-support-training__screen::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(142, 233, 255, .50);
+  }
+
+  .cc-support-training__screen::before {
+    top: 27px;
+  }
+
+  .cc-support-training__screen::after {
+    top: 49px;
+    right: 48px;
+    opacity: .45;
+  }
+
+  .cc-support-training__base {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 90px;
+    height: 18px;
+    transform: translateX(-50%);
+    border-radius: 3px 3px 10px 10px;
+    background: linear-gradient(180deg, #b9d2df, #55707e);
+  }
+
+  .cc-support-clear {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    width: 155px;
+    height: 230px;
+    transform: translateX(-50%);
+  }
+
+  .cc-support-clear__line {
+    position: absolute;
+    left: 50%;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--cc-support-blue-soft);
+    box-shadow: 0 0 16px rgba(54, 183, 240, .48);
+  }
+
+  .cc-support-clear__line:nth-child(1) {
+    top: 0;
+    height: 74px;
+    transform: translateX(-30px);
+  }
+
+  .cc-support-clear__line:nth-child(2) {
+    top: 28px;
+    height: 105px;
+    transform: translateX(-10px);
+  }
+
+  .cc-support-clear__line:nth-child(3) {
+    top: 10px;
+    height: 135px;
+    transform: translateX(12px);
+  }
+
+  .cc-support-clear__line:nth-child(4) {
+    top: 54px;
+    height: 88px;
+    transform: translateX(34px);
+  }
+
+  .cc-support-clear__message {
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    width: 132px;
+    padding: 13px 15px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(142, 233, 255, .20);
+    border-radius: 14px 14px 14px 4px;
+    background: rgba(5, 22, 33, .88);
+    box-shadow: 0 18px 32px rgba(0, 0, 0, .25);
+  }
+
+  .cc-support-clear__message span {
+    display: block;
+    height: 6px;
+    margin-bottom: 7px;
+    border-radius: 999px;
+    background: rgba(142, 233, 255, .55);
+  }
+
+  .cc-support-clear__message span:nth-child(2) {
+    width: 78%;
+    opacity: .55;
+  }
+
+  .cc-support-clear__message span:nth-child(3) {
+    width: 56%;
+    margin-bottom: 0;
+    opacity: .35;
+  }
+
+  .cc-support-evolution {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cc-support-evolution__orbit {
+    position: absolute;
+    top: 48%;
+    left: 58%;
+    width: 170px;
+    height: 170px;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(142, 233, 255, .15);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 30px rgba(54, 183, 240, .025),
+      0 0 0 58px rgba(54, 183, 240, .015);
+  }
+
+  .cc-support-evolution__orbit::before,
+  .cc-support-evolution__orbit::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cc-support-blue-soft);
+    box-shadow: 0 0 16px rgba(54, 183, 240, .65);
+  }
+
+  .cc-support-evolution__orbit::before {
+    top: 18px;
+    left: 12px;
+  }
+
+  .cc-support-evolution__orbit::after {
+    right: 16px;
+    bottom: 20px;
+  }
+
+  .cc-support-evolution__core {
+    position: absolute;
+    top: 48%;
+    left: 58%;
+    width: 76px;
+    height: 76px;
+    display: grid;
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(142, 233, 255, .28);
+    border-radius: 50%;
+    color: var(--cc-support-blue-soft);
+    background: rgba(5, 21, 32, .88);
+    box-shadow: 0 0 32px rgba(54, 183, 240, .13);
+  }
+
+  .cc-support-evolution__core svg {
+    width: 31px;
+    height: 31px;
+  }
+
+  .cc-support__footer {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 42px;
+    align-items: center;
+    margin-top: 62px;
+    padding: 32px 36px;
+    border: 1px solid rgba(142, 233, 255, .13);
+    border-radius: 20px;
+    background:
+      linear-gradient(110deg, rgba(15, 43, 60, .84), rgba(5, 19, 29, .91));
+    box-shadow:
+      0 22px 60px rgba(0, 0, 0, .24),
+      inset 0 1px 0 rgba(255, 255, 255, .03);
+  }
+
+  .cc-support__quote {
+    margin: 0;
+    color: var(--cc-support-muted);
+    font-size: clamp(18px, 1.9vw, 25px);
+    line-height: 1.4;
+    letter-spacing: -.025em;
+    text-wrap: balance;
+  }
+
+  .cc-support__quote strong {
+    color: var(--cc-support-white);
+    font-weight: 610;
+  }
+
+  .cc-support__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 6px 18px 6px 6px;
+    border: 1px solid rgba(142, 233, 255, .62);
+    border-radius: 999px;
+    color: var(--cc-support-blue-soft);
+    background: rgba(3, 17, 27, .76);
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -.012em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      transform .25s ease,
+      color .25s ease,
+      border-color .25s ease,
+      background-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .cc-support__cta span {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #021018;
+    background: var(--cc-support-blue-soft);
+  }
+
+  .cc-support__cta svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-support__cta:hover,
+  .cc-support__cta:focus-visible {
+    color: var(--cc-support-white);
+    border-color: var(--cc-support-blue-soft);
+    background: rgba(8, 36, 52, .94);
+    box-shadow: 0 0 30px rgba(54, 183, 240, .14);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  @media (max-width: 980px) {
+    .cc-support__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: 330px 250px;
+    }
+
+    .cc-support-card--human {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .cc-support-card--training {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .cc-support-card--clear {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .cc-support-card--evolution {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .cc-support__inner {
+      width: min(100% - 24px, 560px);
+      padding: 101px 0 82px;
+    }
+
+    .cc-support__title {
+      font-size: clamp(42px, 11vw, 58px);
+    }
+
+    .cc-support__intro {
+      font-size: 15px;
+    }
+
+    .cc-support__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+
+    .cc-support-card,
+    .cc-support-card--human,
+    .cc-support-card--training,
+    .cc-support-card--clear,
+    .cc-support-card--evolution {
+      grid-column: 1;
+      grid-row: auto;
+      min-height: 300px;
+    }
+
+    .cc-support-card--training {
+      min-height: 240px;
+    }
+
+    .cc-support__footer {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 28px 24px;
+    }
+
+    .cc-support__cta {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cc-support__cta {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cc-support-evolution__orbit {
+      animation: cc-support-rotate 16s linear infinite;
+    }
+
+    @keyframes cc-support-rotate {
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+  }
+</style>
+
+<section class="cc-support" id="soporte-formacion" aria-labelledby="cc-support-title">
+  <div class="cc-support__inner">
+    <header class="cc-support__header">
+      <div class="cc-support__eyebrow">
+        <svg class="cc-support__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10"
+            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span>Soporte y formación</span>
+      </div>
+
+      <h2 class="cc-support__title" id="cc-support-title">
+        Tecnología con <em>personas al otro lado</em>
+      </h2>
+
+      <p class="cc-support__intro">
+        Nuestro trabajo no termina cuando publicamos una web o ponemos en marcha un sistema.
+        <strong>Acompañamos a tu empresa</strong> para resolver dudas, facilitar la adaptación
+        del equipo y ayudar a que las soluciones se utilicen correctamente.
+      </p>
+    </header>
+
+    <div class="cc-support__grid">
+      <article class="cc-support-card cc-support-card--human">
+        <div class="cc-support-card__visual" aria-hidden="true">
+          <span class="cc-support-card__glow"></span>
+
+          <div class="cc-support-people">
+            <span class="cc-support-people__person cc-support-people__person--main">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M5 20c.5-4.2 2.8-6.3 7-6.3s6.5 2.1 7 6.3"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+
+            <span class="cc-support-people__person cc-support-people__person--left">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M5 20c.5-4.2 2.8-6.3 7-6.3s6.5 2.1 7 6.3"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+
+            <span class="cc-support-people__person cc-support-people__person--right">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M5 20c.5-4.2 2.8-6.3 7-6.3s6.5 2.1 7 6.3"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="cc-support-card__content">
+          <span class="cc-support-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 17.5V10a7 7 0 0 1 14 0v7.5"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M5 14H3.8A1.8 1.8 0 0 0 2 15.8v2.4A1.8 1.8 0 0 0 3.8 20H6v-6H5Zm14 0h1.2a1.8 1.8 0 0 1 1.8 1.8v2.4a1.8 1.8 0 0 1-1.8 1.8H18v-6h1Z"
+                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            </svg>
+          </span>
+
+          <h3 class="cc-support-card__title">Soporte humano</h3>
+          <p class="cc-support-card__text">
+            Hablas con personas que conocen el proyecto y entienden cómo funciona.
+          </p>
+        </div>
+      </article>
+
+      <article class="cc-support-card cc-support-card--training">
+        <div class="cc-support-card__visual" aria-hidden="true">
+          <div class="cc-support-training">
+            <span class="cc-support-training__screen"></span>
+            <span class="cc-support-training__base"></span>
+          </div>
+        </div>
+
+        <div class="cc-support-card__content">
+          <span class="cc-support-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="m3 9 9-5 9 5-9 5-9-5Z"
+                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M7 12v4.2c2.7 2.4 7.3 2.4 10 0V12"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+
+          <h3 class="cc-support-card__title">Formación práctica</h3>
+          <p class="cc-support-card__text">
+            Enseñamos al equipo a utilizar las herramientas y aplicar los nuevos procesos.
+          </p>
+        </div>
+      </article>
+
+      <article class="cc-support-card cc-support-card--clear">
+        <div class="cc-support-card__visual" aria-hidden="true">
+          <div class="cc-support-clear">
+            <span class="cc-support-clear__line"></span>
+            <span class="cc-support-clear__line"></span>
+            <span class="cc-support-clear__line"></span>
+            <span class="cc-support-clear__line"></span>
+
+            <div class="cc-support-clear__message">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cc-support-card__content">
+          <span class="cc-support-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 5.5h16v11H8l-4 3v-14Z"
+                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M8 9h8M8 12.5h5"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+
+          <h3 class="cc-support-card__title">Comunicación clara</h3>
+          <p class="cc-support-card__text">
+            Explicamos la tecnología sin tecnicismos innecesarios.
+          </p>
+        </div>
+      </article>
+
+      <article class="cc-support-card cc-support-card--evolution">
+        <div class="cc-support-card__visual" aria-hidden="true">
+          <div class="cc-support-evolution">
+            <span class="cc-support-evolution__orbit"></span>
+
+            <span class="cc-support-evolution__core">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 8.5A7 7 0 1 1 5.5 16"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M6 4.5v4H2"
+                  stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="cc-support-card__content">
+          <span class="cc-support-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 17 10 11l3 3 7-8"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 6h4v4"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+
+          <h3 class="cc-support-card__title">Evolución</h3>
+          <p class="cc-support-card__text">
+            Podemos adaptar las soluciones cuando aparecen nuevas necesidades.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <footer class="cc-support__footer">
+      <blockquote class="cc-support__quote">
+        <strong>No solo entregamos tecnología.</strong>
+        Ayudamos a incorporarla al día a día de la empresa.
+      </blockquote>
+
+      <a class="cc-support__cta" href="#contacto">
+        <span aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none">
+            <path d="M4.5 10h11M11 5.5 15.5 10 11 14.5"
+              stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Hablar con nuestro equipo
+      </a>
+    </footer>
+  </div>
+</section>
+</body>
+</html>

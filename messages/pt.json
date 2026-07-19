@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "default": {
+      "title": "ConejoCreative — Seu salto rumo ao sucesso",
+      "description": "Empresa de transformação digital especializada em desenvolvimento web, software sob medida, automação, integrações e soluções digitais para empresas."
+    },
+    "home": {
+      "title": "Transformação digital e desenvolvimento web",
+      "description": "Projetamos e desenvolvemos sites profissionais, software sob medida e automações que impulsionam o crescimento da sua empresa."
+    },
+    "services": {
+      "title": "Serviços",
+      "description": "Desenvolvimento web, software sob medida, automação de processos, integrações, sistemas empresariais e soluções com inteligência artificial."
+    },
+    "projects": {
+      "title": "Projetos",
+      "description": "Casos de sucesso e projetos de transformação digital desenvolvidos pela ConejoCreative."
+    },
+    "about": {
+      "title": "Sobre nós",
+      "description": "Conheça a equipe da ConejoCreative e nossa forma de trabalhar: proximidade, qualidade e transparência em cada projeto digital."
+    },
+    "contact": {
+      "title": "Contato",
+      "description": "Conte sobre o seu projeto e responderemos em até 48 horas úteis. Dê o seu salto rumo ao sucesso com a ConejoCreative."
+    }
+  },
+  "layout": {
+    "skipToContent": "Pular para o conteúdo principal"
+  },
+  "nav": {
+    "main": "Navegação principal",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "home": "Início",
+    "services": "Serviços",
+    "projects": "Projetos",
+    "about": "Sobre nós",
+    "contact": "Contato"
+  },
+  "localeSwitcher": {
+    "label": "Idioma",
+    "es": "Español",
+    "pt": "Português (Brasil)",
+    "en": "English"
+  },
+  "footer": {
+    "slogan": "Seu salto rumo ao sucesso.",
+    "description": "Empresa de transformação digital especializada em desenvolvimento web, software sob medida, automação e integrações para empresas.",
+    "navTitle": "Navegação",
+    "rights": "Todos os direitos reservados."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Transformação digital",
+      "title": "Seu salto rumo ao sucesso.",
+      "description": "Na ConejoCreative, projetamos e desenvolvemos sites profissionais, software sob medida e automações que fazem o seu negócio crescer. Tecnologia pensada para empresas que querem avançar.",
+      "primaryCta": "Conte sobre seu projeto",
+      "secondaryCta": "Ver serviços"
+    },
+    "services": {
+      "title": "O que podemos fazer pela sua empresa",
+      "description": "Combinamos estratégia, design e tecnologia para construir soluções digitais que funcionam de verdade.",
+      "cta": "Todos os serviços",
+      "items": {
+        "web": {
+          "title": "Desenvolvimento web",
+          "description": "Sites profissionais, rápidos e preparados para SEO que transformam visitas em clientes."
+        },
+        "software": {
+          "title": "Software sob medida",
+          "description": "Aplicações projetadas para os seus processos reais, sem as limitações das ferramentas genéricas."
+        },
+        "automation": {
+          "title": "Automação",
+          "description": "Eliminamos tarefas repetitivas conectando suas ferramentas e automatizando seus fluxos de trabalho."
+        },
+        "ai": {
+          "title": "Inteligência artificial",
+          "description": "Soluções com IA aplicadas a casos de uso concretos que geram valor mensurável para o seu negócio."
+        }
+      }
+    }
+  },
+  "services": {
+    "title": "Serviços",
+    "description": "Acompanhamos a sua empresa em todo o ciclo digital: do primeiro site a sistemas empresariais completos.",
+    "items": {
+      "web": {
+        "title": "Desenvolvimento web",
+        "description": "Sites modernos, rápidos e acessíveis, construídos com tecnologia atual e otimizados para os buscadores."
+      },
+      "sites": {
+        "title": "Sites profissionais",
+        "description": "Presença digital corporativa que transmite confiança e representa a sua marca com qualidade."
+      },
+      "software": {
+        "title": "Software sob medida",
+        "description": "Aplicações projetadas do zero para os seus processos, com arquitetura escalável e de fácil manutenção."
+      },
+      "automation": {
+        "title": "Automação de processos",
+        "description": "Fluxos de trabalho automatizados que reduzem erros e liberam o tempo da sua equipe."
+      },
+      "integrations": {
+        "title": "Integrações",
+        "description": "Conectamos suas ferramentas — CRM, ERP, faturamento, marketing — para que funcionem como um único sistema."
+      },
+      "systems": {
+        "title": "Sistemas empresariais",
+        "description": "Plataformas internas de gestão adaptadas à operação real da sua empresa."
+      },
+      "ai": {
+        "title": "Soluções com inteligência artificial",
+        "description": "Assistentes, análises e automações inteligentes aplicadas a problemas concretos de negócio."
+      },
+      "transformation": {
+        "title": "Transformação digital",
+        "description": "Estratégia e acompanhamento para digitalizar a sua empresa passo a passo, com resultados mensuráveis."
+      }
+    }
+  },
+  "projects": {
+    "title": "Projetos",
+    "description": "Cada projeto é um salto: aqui vamos reunir os casos em que ajudamos empresas a crescer com tecnologia.",
+    "comingSoon": {
+      "title": "Casos de sucesso em preparação",
+      "description": "Estamos documentando nossos primeiros casos de sucesso. Em breve você encontrará aqui projetos reais com contexto, solução e resultados."
+    },
+    "process": {
+      "title": "Como trabalhamos",
+      "steps": {
+        "discovery": {
+          "title": "Descoberta",
+          "description": "Ouvimos, analisamos seus processos e definimos juntos os objetivos do projeto."
+        },
+        "build": {
+          "title": "Design e desenvolvimento",
+          "description": "Construímos a solução com entregas frequentes para que você acompanhe o avanço desde o primeiro momento."
+        },
+        "launch": {
+          "title": "Lançamento e melhoria",
+          "description": "Publicamos, medimos e seguimos melhorando o produto com dados reais."
+        }
+      }
+    },
+    "cta": "Vamos falar do seu projeto"
+  },
+  "about": {
+    "title": "Sobre nós",
+    "description": "Somos a ConejoCreative, uma empresa de transformação digital que ajuda outras empresas a dar o seu salto rumo ao sucesso.",
+    "mission": {
+      "title": "Nossa missão",
+      "description": "Aproximar a tecnologia de qualidade das empresas que querem crescer. Acreditamos que um bom produto digital não é um luxo: é a base para competir hoje. Por isso trabalhamos com proximidade, falamos de forma clara e construímos soluções que nossos clientes entendem e controlam."
+    },
+    "values": {
+      "title": "Nossos valores",
+      "items": {
+        "closeness": {
+          "title": "Proximidade",
+          "description": "Falamos a sua língua, não apenas a técnica. Cada projeto tem interlocutores diretos e comunicação constante."
+        },
+        "quality": {
+          "title": "Qualidade",
+          "description": "Cuidamos dos detalhes no código, no design e no desempenho. O que entregamos é feito para durar."
+        },
+        "transparency": {
+          "title": "Transparência",
+          "description": "Orçamentos claros, prazos realistas e decisões explicadas. Sem surpresas nem letras miúdas."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contato",
+    "description": "Conte o que você precisa e proporemos o melhor caminho para chegar lá.",
+    "responseNote": "Respondemos em até 48 horas úteis.",
+    "form": {
+      "name": "Nome",
+      "company": "Empresa",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "service": "Serviço de interesse",
+      "servicePlaceholder": "Selecione um serviço",
+      "services": {
+        "web": "Desenvolvimento web",
+        "software": "Software sob medida",
+        "automation": "Automação",
+        "integrations": "Integrações",
+        "ai": "Inteligência artificial",
+        "other": "Outro"
+      },
+      "message": "Mensagem",
+      "consent": "Li e aceito a política de privacidade e o tratamento dos meus dados para responder à minha solicitação.",
+      "submit": "Enviar mensagem",
+      "submitting": "Enviando…",
+      "success": {
+        "title": "Mensagem enviada!",
+        "description": "Obrigado por escrever. Responderemos em até 48 horas úteis.",
+        "again": "Enviar outra mensagem"
+      },
+      "errors": {
+        "name": "Informe seu nome (mínimo de 2 caracteres).",
+        "company": "Informe o nome da sua empresa.",
+        "email": "Informe um e-mail válido.",
+        "phone": "Informe um telefone válido.",
+        "service": "Selecione um serviço.",
+        "message": "Conte um pouco mais (mínimo de 10 caracteres).",
+        "consent": "Você precisa aceitar a política de privacidade."
+      }
+    }
+  }
+}

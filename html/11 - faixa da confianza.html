@@ -1,0 +1,94 @@
+<style>
+.cc-trust-strip,.cc-trust-strip *{box-sizing:border-box}
+.cc-trust-strip{
+  --bg:#060b10;--soft:#0a1219;--border:rgba(142,233,255,.10);
+  --text:rgba(235,246,252,.72);--blue:#8ee9ff;
+  position:relative;z-index:2;width:100%;margin:-1px 0;overflow:hidden;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  color:var(--text);
+  background:linear-gradient(90deg,#03080d 0%,var(--soft) 22%,var(--bg) 50%,var(--soft) 78%,#03080d 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased
+}
+.cc-trust-strip::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% -110%,rgba(54,183,240,.17),transparent 56%)
+}
+.cc-trust-strip::after{
+  content:"";position:absolute;z-index:3;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--bg) 0%,transparent 8%,transparent 92%,var(--bg) 100%)
+}
+.cc-trust-strip__viewport{overflow:hidden}
+.cc-trust-strip__track{
+  display:flex;width:max-content;min-width:100%;
+  animation:cc-trust-marquee 34s linear infinite;will-change:transform
+}
+.cc-trust-strip:hover .cc-trust-strip__track{animation-play-state:paused}
+.cc-trust-strip__group{display:flex;flex:0 0 auto;align-items:center;min-width:max-content;padding:0 27px}
+.cc-trust-strip__item{display:inline-flex;align-items:center;min-height:76px;white-space:nowrap}
+.cc-trust-strip__label{
+  color:var(--text);font-size:11px;line-height:1;font-weight:620;
+  letter-spacing:.29em;text-transform:uppercase
+}
+.cc-trust-strip__mark{
+  width:28px;height:30px;margin:0 26px;color:var(--blue);
+  filter:drop-shadow(0 0 10px rgba(54,183,240,.24))
+}
+.cc-trust-strip__separator{
+  width:4px;height:4px;margin:0 2px;border-radius:50%;
+  background:rgba(142,233,255,.26);box-shadow:0 0 9px rgba(54,183,240,.22)
+}
+@keyframes cc-trust-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:700px){
+  .cc-trust-strip__group{padding:0 18px}
+  .cc-trust-strip__item{min-height:68px}
+  .cc-trust-strip__label{font-size:10px;letter-spacing:.22em}
+  .cc-trust-strip__mark{width:25px;height:27px;margin:0 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cc-trust-strip__track{width:100%;animation:none}
+  .cc-trust-strip__group{min-width:100%;flex-wrap:wrap;justify-content:center;padding:12px 18px}
+  .cc-trust-strip__group[aria-hidden="true"]{display:none}
+  .cc-trust-strip__item{min-height:48px;flex-wrap:wrap;justify-content:center}
+}
+</style>
+
+<section class="cc-trust-strip" aria-label="Principios de trabajo de ConejoCreative">
+  <div class="cc-trust-strip__viewport">
+    <div class="cc-trust-strip__track">
+      <div class="cc-trust-strip__group">
+        <div class="cc-trust-strip__item">
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Soluciones a medida</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Comunicación clara</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Soporte humano</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Procesos transparentes</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Tecnología orientada a resultados</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Acompañamiento continuo</span><span class="cc-trust-strip__separator"></span>
+        </div>
+      </div>
+
+      <div class="cc-trust-strip__group" aria-hidden="true">
+        <div class="cc-trust-strip__item">
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Soluciones a medida</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Comunicación clara</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Soporte humano</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Procesos transparentes</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Tecnología orientada a resultados</span><span class="cc-trust-strip__separator"></span>
+          <svg class="cc-trust-strip__mark" viewBox="0 0 32 32" fill="none"><path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="cc-trust-strip__label">Acompañamiento continuo</span><span class="cc-trust-strip__separator"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

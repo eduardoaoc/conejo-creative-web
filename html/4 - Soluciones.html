@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soluciones — ConejoCreative</title>
+  <meta name="description" content="Soluciones digitales conectadas para hacer crecer empresas.">
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #01070e;
+    }
+  </style>
+</head>
+<body>
+<!--
+  Sección 4 — Soluciones
+  Carrusel automático con pausa al pasar el mouse.
+-->
+<style>
+  .cc-solutions,
+  .cc-solutions * {
+    box-sizing: border-box;
+  }
+
+  .cc-solutions {
+    --cc-bg: #01070e;
+    --cc-bg-soft: #03131f;
+    --cc-card: #071722;
+    --cc-white: #f5fbff;
+    --cc-muted: rgba(218, 235, 245, .67);
+    --cc-blue: #36b7f0;
+    --cc-blue-soft: #8ee9ff;
+    --cc-border: rgba(142, 233, 255, .15);
+
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--cc-white);
+    background:
+      linear-gradient(180deg, #01070e 0%, #020b13 10%, #03131f 48%, #01070e 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .cc-solutions::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 8%, rgba(54, 183, 240, .12), transparent 31%),
+      linear-gradient(rgba(142, 233, 255, .021) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .021) 1px, transparent 1px);
+    background-size: auto, 80px 80px, 80px 80px;
+  }
+
+  .cc-solutions__inner {
+    width: min(1460px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 128px 0 105px;
+  }
+
+  .cc-solutions__header {
+    position: relative;
+    z-index: 2;
+    max-width: 880px;
+    margin: 0 auto 62px;
+    text-align: center;
+  }
+
+  .cc-solutions__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 18px;
+    color: var(--cc-blue-soft);
+  }
+
+  .cc-solutions__mark {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 16px rgba(54, 183, 240, .28));
+  }
+
+  .cc-solutions__eyebrow span {
+    color: rgba(224, 240, 249, .68);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-solutions__title {
+    margin: 0;
+    color: var(--cc-white);
+    font-size: clamp(48px, 5.2vw, 74px);
+    line-height: .98;
+    font-weight: 520;
+    letter-spacing: -.062em;
+    text-wrap: balance;
+  }
+
+  .cc-solutions__title em {
+    color: var(--cc-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    letter-spacing: -.05em;
+  }
+
+  .cc-solutions__intro {
+    max-width: 720px;
+    margin: 23px auto 0;
+    color: var(--cc-muted);
+    font-size: 16px;
+    line-height: 1.56;
+    letter-spacing: -.016em;
+  }
+
+  .cc-solutions-carousel {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0 12px;
+  }
+
+  .cc-solutions-carousel::before,
+  .cc-solutions-carousel::after {
+    content: "";
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    bottom: 0;
+    width: clamp(44px, 10vw, 180px);
+    pointer-events: none;
+  }
+
+  .cc-solutions-carousel::before {
+    left: 0;
+    background: linear-gradient(90deg, #020b13 0%, rgba(2, 11, 19, .88) 35%, transparent 100%);
+  }
+
+  .cc-solutions-carousel::after {
+    right: 0;
+    background: linear-gradient(-90deg, #020b13 0%, rgba(2, 11, 19, .88) 35%, transparent 100%);
+  }
+
+  .cc-solutions-carousel__track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    padding: 0 calc(50vw - 160px);
+    transform: translate3d(0, 0, 0);
+    transition: transform .7s cubic-bezier(.22, .72, .17, 1);
+    will-change: transform;
+  }
+
+  .cc-carousel-card {
+    position: relative;
+    flex: 0 0 320px;
+    height: 470px;
+    overflow: hidden;
+    border: 1px solid var(--cc-border);
+    border-radius: 20px;
+    background:
+      linear-gradient(145deg, rgba(14, 41, 58, .95), rgba(4, 16, 26, .98));
+    box-shadow:
+      0 24px 62px rgba(0, 0, 0, .33),
+      inset 0 1px 0 rgba(255, 255, 255, .035);
+    opacity: .42;
+    transform: scale(.88);
+    filter: saturate(.65);
+    transition:
+      opacity .55s ease,
+      transform .55s ease,
+      filter .55s ease,
+      border-color .28s ease,
+      box-shadow .28s ease;
+    outline: none;
+  }
+
+  .cc-carousel-card.is-near {
+    opacity: .72;
+    transform: scale(.94);
+    filter: saturate(.82);
+  }
+
+  .cc-carousel-card.is-active {
+    opacity: 1;
+    transform: scale(1);
+    filter: saturate(1);
+    border-color: rgba(142, 233, 255, .32);
+    box-shadow:
+      0 34px 88px rgba(0, 0, 0, .40),
+      0 0 34px rgba(54, 183, 240, .10),
+      inset 0 1px 0 rgba(255, 255, 255, .05);
+  }
+
+  .cc-carousel-card:hover,
+  .cc-carousel-card:focus-visible {
+    opacity: 1;
+    transform: scale(1.025);
+    filter: saturate(1);
+    border-color: rgba(142, 233, 255, .45);
+    box-shadow:
+      0 40px 96px rgba(0, 0, 0, .45),
+      0 0 42px rgba(54, 183, 240, .12);
+    z-index: 7;
+  }
+
+  .cc-carousel-card__visual {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .cc-carousel-card__visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(142, 233, 255, .055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .055) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: .42;
+  }
+
+  .cc-carousel-card__orb {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    transform: translateX(-50%);
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at 36% 30%, rgba(142, 233, 255, .34), transparent 34%),
+      linear-gradient(145deg, rgba(54, 183, 240, .44), rgba(4, 18, 29, .95) 69%);
+    border: 1px solid rgba(142, 233, 255, .22);
+    box-shadow:
+      0 48px 58px rgba(0, 0, 0, .46),
+      0 0 0 13px rgba(54, 183, 240, .035),
+      inset -22px -26px 34px rgba(0, 0, 0, .35);
+    transform-origin: center;
+    rotate: -8deg;
+    transition: transform .45s ease, rotate .45s ease;
+  }
+
+  .cc-carousel-card:hover .cc-carousel-card__orb,
+  .cc-carousel-card:focus-visible .cc-carousel-card__orb {
+    transform: translateX(-50%) translateY(-10px);
+    rotate: -3deg;
+  }
+
+  .cc-carousel-card__mesh {
+    position: absolute;
+    left: 50%;
+    bottom: 72px;
+    width: 290px;
+    height: 160px;
+    transform: translateX(-50%) perspective(500px) rotateX(67deg);
+    border: 1px solid rgba(142, 233, 255, .16);
+    background:
+      linear-gradient(rgba(142, 233, 255, .11) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .11) 1px, transparent 1px);
+    background-size: 25px 25px;
+    box-shadow: 0 0 35px rgba(54, 183, 240, .08);
+  }
+
+  .cc-carousel-card__icon {
+    position: absolute;
+    top: 114px;
+    left: 50%;
+    width: 112px;
+    height: 112px;
+    transform: translateX(-50%);
+    color: var(--cc-blue-soft);
+    filter:
+      drop-shadow(0 0 18px rgba(142, 233, 255, .42))
+      drop-shadow(0 16px 16px rgba(0, 0, 0, .28));
+    transition: transform .45s ease;
+  }
+
+  .cc-carousel-card:hover .cc-carousel-card__icon,
+  .cc-carousel-card:focus-visible .cc-carousel-card__icon {
+    transform: translateX(-50%) translateY(-10px) scale(1.05);
+  }
+
+  .cc-carousel-card__shade {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 30%, rgba(2, 10, 17, .14) 48%, rgba(2, 10, 17, .96) 78%, #020a11 100%);
+  }
+
+  .cc-carousel-card__content {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30px 27px 31px;
+    transition: transform .35s ease;
+  }
+
+  .cc-carousel-card__number {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--cc-blue-soft);
+    font-size: 10px;
+    font-weight: 760;
+    letter-spacing: .13em;
+  }
+
+  .cc-carousel-card h3 {
+    margin: 0;
+    color: var(--cc-white);
+    font-size: 28px;
+    line-height: 1.02;
+    font-weight: 580;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+  }
+
+  .cc-carousel-card__subtitle {
+    margin: 12px 0 0;
+    color: rgba(231, 243, 250, .76);
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 520;
+    letter-spacing: -.015em;
+  }
+
+  .cc-carousel-card__more {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      max-height .38s ease,
+      opacity .28s ease,
+      transform .38s ease,
+      margin-top .38s ease;
+  }
+
+  .cc-carousel-card:hover .cc-carousel-card__more,
+  .cc-carousel-card:focus-visible .cc-carousel-card__more,
+  .cc-carousel-card.is-expanded .cc-carousel-card__more {
+    max-height: 170px;
+    margin-top: 17px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cc-carousel-card__more p {
+    margin: 0;
+    color: var(--cc-muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .cc-carousel-card__more a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(142, 233, 255, .30);
+    color: var(--cc-blue-soft);
+    font-size: 12px;
+    font-weight: 680;
+    text-decoration: none;
+  }
+
+  .cc-carousel-card__more svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cc-carousel-card__progress {
+    position: absolute;
+    z-index: 4;
+    left: 28px;
+    right: 28px;
+    bottom: 12px;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(142, 233, 255, .10);
+  }
+
+  .cc-carousel-card.is-active .cc-carousel-card__progress::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--cc-blue-soft);
+    box-shadow: 0 0 12px rgba(54, 183, 240, .42);
+    transform-origin: left;
+    animation: cc-carousel-progress var(--cc-carousel-duration, 3800ms) linear forwards;
+  }
+
+  .cc-solutions-carousel.is-paused .cc-carousel-card__progress::before {
+    animation-play-state: paused;
+  }
+
+  @keyframes cc-carousel-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .cc-solutions-carousel__controls {
+    position: relative;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    margin-top: 30px;
+  }
+
+  .cc-carousel-control {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(142, 233, 255, .14);
+    border-radius: 50%;
+    color: var(--cc-blue-soft);
+    background: rgba(4, 18, 29, .78);
+    cursor: pointer;
+    transition:
+      color .22s ease,
+      border-color .22s ease,
+      background-color .22s ease,
+      transform .22s ease;
+  }
+
+  .cc-carousel-control:hover,
+  .cc-carousel-control:focus-visible {
+    color: #021018;
+    border-color: var(--cc-blue-soft);
+    background: var(--cc-blue-soft);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .cc-carousel-control svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .cc-carousel-dot {
+    width: 9px;
+    height: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(218, 235, 245, .38);
+    cursor: pointer;
+    transition: width .25s ease, background-color .25s ease;
+  }
+
+  .cc-carousel-dot.is-active {
+    width: 30px;
+    background: var(--cc-blue-soft);
+    box-shadow: 0 0 12px rgba(54, 183, 240, .32);
+  }
+
+  .cc-solutions__note {
+    margin: 22px auto 0;
+    color: rgba(218, 235, 245, .42);
+    font-size: 11px;
+    letter-spacing: .02em;
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    .cc-solutions__inner {
+      width: min(100% - 24px, 560px);
+      padding: 102px 0 82px;
+    }
+
+    .cc-solutions__title {
+      font-size: clamp(42px, 11vw, 58px);
+    }
+
+    .cc-solutions__intro {
+      font-size: 15px;
+    }
+
+    .cc-solutions-carousel__track {
+      padding: 0 calc(50vw - 142px);
+    }
+
+    .cc-carousel-card {
+      flex-basis: 284px;
+      height: 445px;
+    }
+
+    .cc-carousel-card__orb {
+      width: 194px;
+      height: 194px;
+    }
+
+    .cc-carousel-card__icon {
+      top: 107px;
+      width: 98px;
+      height: 98px;
+    }
+
+    .cc-carousel-card h3 {
+      font-size: 25px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cc-solutions-carousel__track,
+    .cc-carousel-card,
+    .cc-carousel-card__orb,
+    .cc-carousel-card__icon,
+    .cc-carousel-card__more {
+      transition: none;
+    }
+
+    .cc-carousel-card.is-active .cc-carousel-card__progress::before {
+      animation: none;
+      transform: scaleX(1);
+    }
+  }
+</style>
+
+<section class="cc-solutions" id="soluciones" aria-labelledby="cc-solutions-title">
+  <div class="cc-solutions__inner">
+    <header class="cc-solutions__header">
+      <div class="cc-solutions__eyebrow">
+        <svg class="cc-solutions__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10"
+            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span>Soluciones</span>
+      </div>
+
+      <h2 class="cc-solutions__title" id="cc-solutions-title">
+        Soluciones conectadas para hacer <em>crecer tu empresa</em>
+      </h2>
+
+      <p class="cc-solutions__intro">
+        Estrategia, tecnología y atención trabajando juntas para mejorar
+        cómo te encuentran, cómo te perciben y cómo funciona tu empresa.
+      </p>
+    </header>
+
+    <div class="cc-solutions-carousel" data-cc-solutions-carousel>
+      <div class="cc-solutions-carousel__track" data-cc-carousel-track>
+        
+      <article class="cc-carousel-card" id="presencia-digital" tabindex="0">
+        <div class="cc-carousel-card__visual" aria-hidden="true">
+          <div class="cc-carousel-card__orb"></div>
+          <div class="cc-carousel-card__mesh"></div>
+
+          <svg class="cc-carousel-card__icon" viewBox="0 0 100 100" fill="none">
+            <g stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+              
+          <rect x="19" y="22" width="62" height="48" rx="8"/>
+          <path d="M19 35h62M31 28h.1M41 28h.1M31 48h38M31 59h25"/>
+        
+            </g>
+          </svg>
+        </div>
+
+        <div class="cc-carousel-card__shade"></div>
+
+        <div class="cc-carousel-card__content">
+          <span class="cc-carousel-card__number">01</span>
+          <h3>Presencia digital</h3>
+          <p class="cc-carousel-card__subtitle">Haz que tu empresa sea fácil de encontrar, entender y elegir.</p>
+
+          <div class="cc-carousel-card__more">
+            <p>Creamos webs rápidas, claras y preparadas para convertir visitas en oportunidades.</p>
+            <a href="#contacto">
+              Mejorar mi presencia digital
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9M8.5 4l4 4-4 4"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <span class="cc-carousel-card__progress" aria-hidden="true"></span>
+      </article>
+    
+      <article class="cc-carousel-card" id="branding-posicionamiento" tabindex="0">
+        <div class="cc-carousel-card__visual" aria-hidden="true">
+          <div class="cc-carousel-card__orb"></div>
+          <div class="cc-carousel-card__mesh"></div>
+
+          <svg class="cc-carousel-card__icon" viewBox="0 0 100 100" fill="none">
+            <g stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+              
+          <path d="m50 16 28 23-28 43-28-43 28-23Z"/>
+          <path d="m22 39 28 10 28-10M50 49v33"/>
+        
+            </g>
+          </svg>
+        </div>
+
+        <div class="cc-carousel-card__shade"></div>
+
+        <div class="cc-carousel-card__content">
+          <span class="cc-carousel-card__number">02</span>
+          <h3>Branding y posicionamiento</h3>
+          <p class="cc-carousel-card__subtitle">Una marca clara explica por qué deberían elegirte.</p>
+
+          <div class="cc-carousel-card__more">
+            <p>Construimos una identidad coherente que transmite profesionalidad, confianza y diferenciación.</p>
+            <a href="#contacto">
+              Fortalecer mi marca
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9M8.5 4l4 4-4 4"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <span class="cc-carousel-card__progress" aria-hidden="true"></span>
+      </article>
+    
+      <article class="cc-carousel-card" id="redes-contenidos" tabindex="0">
+        <div class="cc-carousel-card__visual" aria-hidden="true">
+          <div class="cc-carousel-card__orb"></div>
+          <div class="cc-carousel-card__mesh"></div>
+
+          <svg class="cc-carousel-card__icon" viewBox="0 0 100 100" fill="none">
+            <g stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+              
+          <circle cx="50" cy="50" r="25"/>
+          <circle cx="50" cy="50" r="6"/>
+          <circle cx="27" cy="36" r="5"/>
+          <circle cx="73" cy="36" r="5"/>
+          <circle cx="50" cy="77" r="5"/>
+          <path d="m32 39 12 7M68 39l-12 7M50 71V58"/>
+        
+            </g>
+          </svg>
+        </div>
+
+        <div class="cc-carousel-card__shade"></div>
+
+        <div class="cc-carousel-card__content">
+          <span class="cc-carousel-card__number">03</span>
+          <h3>Redes y contenidos</h3>
+          <p class="cc-carousel-card__subtitle">Que tu comunicación deje de parecer improvisada.</p>
+
+          <div class="cc-carousel-card__more">
+            <p>Organizamos la imagen y los contenidos para apoyar tus objetivos comerciales.</p>
+            <a href="#contacto">
+              Mejorar mis redes
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9M8.5 4l4 4-4 4"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <span class="cc-carousel-card__progress" aria-hidden="true"></span>
+      </article>
+    
+      <article class="cc-carousel-card" id="atencion-conversion" tabindex="0">
+        <div class="cc-carousel-card__visual" aria-hidden="true">
+          <div class="cc-carousel-card__orb"></div>
+          <div class="cc-carousel-card__mesh"></div>
+
+          <svg class="cc-carousel-card__icon" viewBox="0 0 100 100" fill="none">
+            <g stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+              
+          <path d="M19 23h62v44H48L31 82V67H19V23Z"/>
+          <path d="m37 47 9 9 18-20"/>
+        
+            </g>
+          </svg>
+        </div>
+
+        <div class="cc-carousel-card__shade"></div>
+
+        <div class="cc-carousel-card__content">
+          <span class="cc-carousel-card__number">04</span>
+          <h3>Atención y conversión</h3>
+          <p class="cc-carousel-card__subtitle">Atraer contactos no basta. Hay que convertirlos.</p>
+
+          <div class="cc-carousel-card__more">
+            <p>Ordenamos la atención, el seguimiento y los canales para aprovechar cada oportunidad.</p>
+            <a href="#contacto">
+              Mejorar mi atención
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9M8.5 4l4 4-4 4"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <span class="cc-carousel-card__progress" aria-hidden="true"></span>
+      </article>
+    
+      <article class="cc-carousel-card" id="software-medida" tabindex="0">
+        <div class="cc-carousel-card__visual" aria-hidden="true">
+          <div class="cc-carousel-card__orb"></div>
+          <div class="cc-carousel-card__mesh"></div>
+
+          <svg class="cc-carousel-card__icon" viewBox="0 0 100 100" fill="none">
+            <g stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+              
+          <path d="M36 29 18 50l18 21M64 29l18 21-18 21M57 20 43 80"/>
+        
+            </g>
+          </svg>
+        </div>
+
+        <div class="cc-carousel-card__shade"></div>
+
+        <div class="cc-carousel-card__content">
+          <span class="cc-carousel-card__number">05</span>
+          <h3>Software a medida</h3>
+          <p class="cc-carousel-card__subtitle">El software debe adaptarse a tu empresa.</p>
+
+          <div class="cc-carousel-card__more">
+            <p>Desarrollamos sistemas personalizados para centralizar información y simplificar procesos.</p>
+            <a href="#contacto">
+              Desarrollar mi software
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9M8.5 4l4 4-4 4"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <span class="cc-carousel-card__progress" aria-hidden="true"></span>
+      </article>
+    
+      <article class="cc-carousel-card" id="automatizacion-ia" tabindex="0">
+        <div class="cc-carousel-card__visual" aria-hidden="true">
+          <div class="cc-carousel-card__orb"></div>
+          <div class="cc-carousel-card__mesh"></div>
+
+          <svg class="cc-carousel-card__icon" viewBox="0 0 100 100" fill="none">
+            <g stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+              
+          <path d="M24 31h32a15 15 0 0 1 15 15v2"/>
+          <path d="m63 40 8 8 8-8"/>
+          <path d="M76 69H44a15 15 0 0 1-15-15v-2"/>
+          <path d="m37 60-8-8-8 8"/>
+        
+            </g>
+          </svg>
+        </div>
+
+        <div class="cc-carousel-card__shade"></div>
+
+        <div class="cc-carousel-card__content">
+          <span class="cc-carousel-card__number">06</span>
+          <h3>Automatización e IA</h3>
+          <p class="cc-carousel-card__subtitle">Menos tareas repetitivas. Más tiempo para crecer.</p>
+
+          <div class="cc-carousel-card__more">
+            <p>Automatizamos tareas y conectamos sistemas para reducir errores y liberar tiempo del equipo.</p>
+            <a href="#contacto">
+              Automatizar mi empresa
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9M8.5 4l4 4-4 4"
+                  stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <span class="cc-carousel-card__progress" aria-hidden="true"></span>
+      </article>
+    
+      </div>
+
+      <div class="cc-solutions-carousel__controls">
+        <button class="cc-carousel-control" type="button" data-cc-carousel-prev aria-label="Solución anterior">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M15 10H5M9 6l-4 4 4 4"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="cc-carousel-dots" data-cc-carousel-dots aria-label="Seleccionar solución"></div>
+
+        <button class="cc-carousel-control" type="button" data-cc-carousel-next aria-label="Siguiente solución">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M5 10h10M11 6l4 4-4 4"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <p class="cc-solutions__note">
+        Pasa el cursor sobre una solución para ver más detalles.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const carousel = document.querySelector("[data-cc-solutions-carousel]");
+    if (!carousel || carousel.dataset.ready === "true") return;
+
+    carousel.dataset.ready = "true";
+
+    const track = carousel.querySelector("[data-cc-carousel-track]");
+    const cards = [...track.querySelectorAll(".cc-carousel-card")];
+    const prev = carousel.querySelector("[data-cc-carousel-prev]");
+    const next = carousel.querySelector("[data-cc-carousel-next]");
+    const dotsRoot = carousel.querySelector("[data-cc-carousel-dots]");
+
+    const duration = 3800;
+    let index = 0;
+    let timer = null;
+    let paused = false;
+
+    carousel.style.setProperty("--cc-carousel-duration", `${duration}ms`);
+
+    const dots = cards.map((_, cardIndex) => {
+      const dot = document.createElement("button");
+      dot.className = "cc-carousel-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Ver solución ${cardIndex + 1}`);
+      dot.addEventListener("click", () => {
+        goTo(cardIndex);
+        restart();
+      });
+      dotsRoot.appendChild(dot);
+      return dot;
+    });
+
+    const normalize = (value) => (value + cards.length) % cards.length;
+
+    const update = () => {
+      const cardWidth = cards[0].getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(track).gap) || 18;
+      track.style.transform = `translate3d(${-(index * (cardWidth + gap))}px, 0, 0)`;
+
+      cards.forEach((card, cardIndex) => {
+        card.classList.remove("is-active", "is-near");
+        if (cardIndex === index) card.classList.add("is-active");
+
+        const prevIndex = normalize(index - 1);
+        const nextIndex = normalize(index + 1);
+        if (cardIndex === prevIndex || cardIndex === nextIndex) {
+          card.classList.add("is-near");
+        }
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+        dot.setAttribute("aria-current", dotIndex === index ? "true" : "false");
+      });
+    };
+
+    const goTo = (newIndex) => {
+      index = normalize(newIndex);
+      update();
+    };
+
+    const stop = () => {
+      window.clearInterval(timer);
+      timer = null;
+    };
+
+    const start = () => {
+      if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      stop();
+      timer = window.setInterval(() => goTo(index + 1), duration);
+    };
+
+    const restart = () => {
+      stop();
+      start();
+    };
+
+    const setPaused = (value) => {
+      paused = value;
+      carousel.classList.toggle("is-paused", paused);
+      if (paused) stop();
+      else start();
+    };
+
+    prev.addEventListener("click", () => {
+      goTo(index - 1);
+      restart();
+    });
+
+    next.addEventListener("click", () => {
+      goTo(index + 1);
+      restart();
+    });
+
+    carousel.addEventListener("mouseenter", () => setPaused(true));
+    carousel.addEventListener("mouseleave", () => setPaused(false));
+    carousel.addEventListener("focusin", () => setPaused(true));
+    carousel.addEventListener("focusout", (event) => {
+      if (!carousel.contains(event.relatedTarget)) setPaused(false);
+    });
+
+    cards.forEach((card, cardIndex) => {
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a")) return;
+
+        if (index !== cardIndex) {
+          goTo(cardIndex);
+        } else {
+          card.classList.toggle("is-expanded");
+        }
+      });
+    });
+
+    window.addEventListener("resize", update, { passive: true });
+
+    update();
+    start();
+  })();
+</script>
+</body>
+</html>

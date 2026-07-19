@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#00030a">
+<title>ConejoCreative — Problema y solución</title>
+<style>
+  :root {
+    --cc-ps-bg: #00030a;
+    --cc-ps-surface: #020711;
+    --cc-ps-white: #f8fbff;
+    --cc-ps-muted: rgba(232, 242, 250, .57);
+    --cc-ps-blue: #36b7f0;
+    --cc-ps-blue-soft: #8ee9ff;
+    --cc-ps-blue-deep: #0c6fba;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--cc-ps-bg);
+    color: var(--cc-ps-white);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .cc-problem {
+    position: relative;
+    min-height: 940px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      linear-gradient(180deg, #00030a 0%, #020711 15%, #020711 100%);
+  }
+
+  .cc-problem::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(54, 183, 240, .042) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(54, 183, 240, .042) 1px, transparent 1px),
+      linear-gradient(rgba(54, 183, 240, .025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(54, 183, 240, .025) 1px, transparent 1px);
+    background-size:
+      184px 184px,
+      184px 184px,
+      46px 46px,
+      46px 46px;
+    background-position: center 0;
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 88%, transparent 100%);
+  }
+
+  .cc-problem::after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 54%, rgba(31, 151, 211, .10), transparent 24%),
+      linear-gradient(90deg, rgba(0, 3, 10, .76), transparent 16%, transparent 84%, rgba(0, 3, 10, .76)),
+      linear-gradient(180deg, rgba(0, 3, 10, .85), transparent 22%, transparent 82%, rgba(0, 3, 10, .50));
+  }
+
+  .cc-problem__noise {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    pointer-events: none;
+    opacity: .025;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  }
+
+  .cc-problem__inner {
+    width: min(1080px, calc(100% - 48px));
+    min-height: 940px;
+    margin: 0 auto;
+    padding: 190px 0 118px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .cc-problem__title {
+    max-width: 920px;
+    margin: 0 auto;
+    color: rgba(248, 251, 255, .95);
+    text-align: center;
+    font-size: clamp(48px, 5.05vw, 72px);
+    line-height: .99;
+    font-weight: 440;
+    letter-spacing: -.052em;
+    text-wrap: balance;
+  }
+
+  .cc-problem__title span {
+    color: rgba(201, 225, 237, .86);
+  }
+
+  .cc-problem__title em {
+    color: var(--cc-ps-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.08em;
+    font-weight: 400;
+    letter-spacing: -.045em;
+    text-shadow: 0 0 32px rgba(54, 183, 240, .13);
+  }
+
+  .cc-problem__mark-wrap {
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    z-index: 1;
+    width: 88px;
+    height: 88px;
+    display: grid;
+    place-items: center;
+  }
+
+  .cc-problem__cross {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+    display: block;
+    pointer-events: none;
+    background: rgba(54, 183, 240, .115);
+    box-shadow: 0 0 18px rgba(54, 183, 240, .045);
+  }
+
+  .cc-problem__cross--horizontal {
+    width: 100vw;
+    height: 1px;
+    transform: translate(-50%, -50%);
+  }
+
+  .cc-problem__cross--vertical {
+    width: 1px;
+    height: 200vmax;
+    transform: translate(-50%, -50%);
+  }
+
+  .cc-problem__mark-wrap::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: -26px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(54, 183, 240, .25), rgba(12, 111, 186, .09) 38%, transparent 70%);
+    filter: blur(8px);
+    animation: cc-rabbit-glow 3.4s ease-in-out infinite;
+  }
+
+  .cc-problem__mark {
+    position: relative;
+    z-index: 2;
+    width: 66px;
+    height: 66px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(142, 233, 255, .72);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 28%, rgba(31, 91, 128, .35), transparent 43%),
+      #020711;
+    box-shadow:
+      0 0 0 10px rgba(20, 113, 166, .08),
+      0 0 28px rgba(54, 183, 240, .23),
+      inset 0 1px 0 rgba(255, 255, 255, .08);
+  }
+
+  .cc-problem__mark svg {
+    width: 39px;
+    height: 39px;
+    overflow: visible;
+    filter: drop-shadow(0 0 8px rgba(142, 233, 255, .26));
+  }
+
+  .cc-problem__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(84px, 13vw, 190px);
+    align-items: start;
+  }
+
+  .cc-problem__column {
+    max-width: 450px;
+  }
+
+  .cc-problem__column:last-child {
+    justify-self: end;
+  }
+
+  .cc-problem__label {
+    margin: 0 0 20px;
+    color: rgba(232, 242, 250, .70);
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 520;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+  }
+
+  .cc-problem__text {
+    margin: 0;
+    color: var(--cc-ps-muted);
+    font-size: 15px;
+    line-height: 1.62;
+    font-weight: 390;
+    letter-spacing: -.018em;
+  }
+
+  .cc-problem__text strong {
+    color: rgba(232, 246, 253, .83);
+    font-weight: 560;
+  }
+
+  @keyframes cc-rabbit-glow {
+    0%, 100% { opacity: .70; transform: scale(.92); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+
+  @media (max-width: 900px) {
+    .cc-problem { min-height: 900px; }
+
+    .cc-problem__inner {
+      min-height: 900px;
+      padding-top: 155px;
+      padding-bottom: 92px;
+    }
+
+    .cc-problem__title {
+      max-width: 740px;
+      font-size: clamp(46px, 7vw, 64px);
+    }
+
+    .cc-problem__columns {
+      gap: 64px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .cc-problem { min-height: auto; }
+
+    .cc-problem::before {
+      background-size: 144px 144px, 144px 144px, 36px 36px, 36px 36px;
+    }
+
+    .cc-problem__inner {
+      width: min(100% - 34px, 560px);
+      min-height: 0;
+      padding: 112px 0 90px;
+      display: block;
+    }
+
+    .cc-problem__title {
+      font-size: clamp(39px, 11vw, 54px);
+      line-height: 1.01;
+    }
+
+    .cc-problem__mark-wrap {
+      margin: 92px auto 96px;
+    }
+
+    .cc-problem__columns {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+
+    .cc-problem__column,
+    .cc-problem__column:last-child {
+      max-width: 100%;
+      justify-self: stretch;
+    }
+
+    .cc-problem__label {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .cc-problem__text {
+      font-size: 15px;
+      line-height: 1.68;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cc-problem__mark-wrap::before { animation: none; }
+  }
+</style>
+</head>
+<body>
+<section class="cc-problem" id="problema-solucion" aria-labelledby="cc-problem-title">
+  <div class="cc-problem__noise" aria-hidden="true"></div>
+
+  <div class="cc-problem__inner">
+    <h2 class="cc-problem__title" id="cc-problem-title">
+      Soluciones digitales a medida,<br>
+      <span>pensadas para impulsar el <em>crecimiento</em></span><br>
+      real de tu negocio.
+    </h2>
+
+    <div class="cc-problem__mark-wrap" aria-hidden="true">
+      <span class="cc-problem__cross cc-problem__cross--horizontal"></span>
+      <span class="cc-problem__cross cc-problem__cross--vertical"></span>
+      <div class="cc-problem__mark">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.3 26.2C20.9 18.7 20.9 10.7 24.4 8.8C28 6.8 33.8 13.2 35.6 21.7" stroke="#8EE9FF" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M36.7 21.4C38.1 13.2 43.3 6.7 47 8.3C50.6 9.9 51 17.7 47.2 25.4" stroke="#8EE9FF" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M48.2 27.1C53.6 30.6 55.7 37.6 52.8 43.4C49.2 50.4 40.5 54.7 31.6 53.9C22.6 53.1 16.1 47.5 15.2 40.2C14.4 33.8 18.4 28.5 24.7 25.9C32 22.9 42 23.1 48.2 27.1Z" stroke="#8EE9FF" stroke-width="3.2" stroke-linejoin="round"/>
+          <path d="M27 39.5C30.5 42.5 35.1 42.5 38.5 39.5" stroke="#8EE9FF" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="25.6" cy="34.1" r="1.8" fill="#8EE9FF"/>
+          <circle cx="43" cy="34.1" r="1.8" fill="#8EE9FF"/>
+          <path d="M32.2 37.4L34.2 39L36.2 37.4" stroke="#8EE9FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cc-problem__columns">
+      <article class="cc-problem__column">
+        <h3 class="cc-problem__label">Problema</h3>
+        <p class="cc-problem__text">
+          Procesos manuales, herramientas desconectadas y una presencia digital genérica consumen tiempo, generan errores y frenan oportunidades. Muchas empresas tienen tecnología, pero no un ecosistema que trabaje de forma coordinada para producir resultados.
+        </p>
+      </article>
+
+      <article class="cc-problem__column">
+        <h3 class="cc-problem__label">Solución</h3>
+        <p class="cc-problem__text">
+          En <strong>ConejoCreative</strong> diseñamos webs, software y automatizaciones conectadas con tus objetivos. Centralizamos procesos, eliminamos tareas repetitivas y construimos experiencias rápidas, intuitivas y preparadas para convertir cada interacción en crecimiento.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+</body>
+</html>

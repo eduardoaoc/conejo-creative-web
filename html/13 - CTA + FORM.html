@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto — ConejoCreative</title>
+  <meta name="description" content="Cuéntanos qué necesita tu empresa y recibe una propuesta adaptada.">
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #01070e;
+    }
+  </style>
+</head>
+<body>
+<!--
+  Sección CTA + formulario — ConejoCreative
+  Diseñada para colocarse inmediatamente después de #faq.
+
+  Integración:
+  1. Sustituye el href del botón de WhatsApp.
+  2. Conecta el formulario a tu API en el evento submit.
+-->
+<style>
+  .cc-contact,
+  .cc-contact * {
+    box-sizing: border-box;
+  }
+
+  .cc-contact {
+    --cc-contact-bg: #01070e;
+    --cc-contact-panel: rgba(7, 22, 34, .88);
+    --cc-contact-panel-strong: rgba(10, 31, 46, .96);
+    --cc-contact-white: #f5fbff;
+    --cc-contact-muted: rgba(218, 235, 245, .65);
+    --cc-contact-blue: #36b7f0;
+    --cc-contact-blue-soft: #8ee9ff;
+    --cc-contact-border: rgba(142, 233, 255, .14);
+    --cc-contact-error: #ff9b9b;
+    --cc-contact-success: #a7f3d0;
+
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--cc-contact-white);
+    background:
+      linear-gradient(
+        180deg,
+        #01070e 0%,
+        #020b13 10%,
+        #03131f 48%,
+        #020d16 83%,
+        #01070e 100%
+      );
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .cc-contact::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 17% 35%, rgba(54, 183, 240, .10), transparent 29%),
+      radial-gradient(circle at 79% 50%, rgba(142, 233, 255, .065), transparent 27%),
+      linear-gradient(rgba(142, 233, 255, .021) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .021) 1px, transparent 1px);
+    background-size: auto, auto, 78px 78px, 78px 78px;
+  }
+
+  .cc-contact::after {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    pointer-events: none;
+    opacity: .024;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.94'/%3E%3C/svg%3E");
+  }
+
+  .cc-contact__ambient {
+    position: absolute;
+    z-index: -2;
+    top: 82px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(142, 233, 255, .025);
+    font-size: clamp(118px, 17vw, 270px);
+    line-height: .78;
+    font-weight: 700;
+    letter-spacing: -.09em;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cc-contact__inner {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 132px 0 112px;
+  }
+
+  .cc-contact__layout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(330px, .82fr) minmax(0, 1.18fr);
+    gap: 90px;
+    align-items: center;
+  }
+
+  .cc-contact__content {
+    max-width: 540px;
+  }
+
+  .cc-contact__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+    color: var(--cc-contact-blue-soft);
+  }
+
+  .cc-contact__mark {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 16px rgba(54, 183, 240, .28));
+  }
+
+  .cc-contact__eyebrow span {
+    color: rgba(224, 240, 249, .68);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-contact__title {
+    margin: 0;
+    color: var(--cc-contact-white);
+    font-size: clamp(50px, 5.6vw, 78px);
+    line-height: .98;
+    font-weight: 520;
+    letter-spacing: -.062em;
+    text-wrap: balance;
+  }
+
+  .cc-contact__title em {
+    display: block;
+    color: var(--cc-contact-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.01em;
+    font-weight: 400;
+    letter-spacing: -.05em;
+  }
+
+  .cc-contact__intro {
+    max-width: 500px;
+    margin: 25px 0 0;
+    color: var(--cc-contact-muted);
+    font-size: 17px;
+    line-height: 1.57;
+    letter-spacing: -.018em;
+  }
+
+  .cc-contact__intro strong {
+    color: rgba(243, 250, 255, .94);
+    font-weight: 620;
+  }
+
+  .cc-contact__benefits {
+    display: grid;
+    gap: 13px;
+    margin: 31px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cc-contact__benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    color: rgba(218, 235, 245, .64);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .cc-contact__benefits li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: var(--cc-contact-blue-soft);
+    box-shadow: 0 0 12px rgba(54, 183, 240, .48);
+  }
+
+  .cc-contact__whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 50px;
+    margin-top: 34px;
+    padding: 6px 19px 6px 6px;
+    border: 1px solid rgba(142, 233, 255, .60);
+    border-radius: 999px;
+    color: var(--cc-contact-blue-soft);
+    background: rgba(3, 17, 27, .76);
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -.012em;
+    text-decoration: none;
+    transition:
+      transform .25s ease,
+      color .25s ease,
+      border-color .25s ease,
+      background-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .cc-contact__whatsapp-icon {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #021018;
+    background: var(--cc-contact-blue-soft);
+  }
+
+  .cc-contact__whatsapp svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cc-contact__whatsapp:hover,
+  .cc-contact__whatsapp:focus-visible {
+    color: var(--cc-contact-white);
+    border-color: var(--cc-contact-blue-soft);
+    background: rgba(8, 36, 52, .94);
+    box-shadow: 0 0 30px rgba(54, 183, 240, .14);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .cc-contact__form-shell {
+    position: relative;
+    padding: 1px;
+    border-radius: 24px;
+    background:
+      linear-gradient(
+        145deg,
+        rgba(142, 233, 255, .26),
+        rgba(142, 233, 255, .05) 45%,
+        rgba(54, 183, 240, .17)
+      );
+    box-shadow:
+      0 35px 90px rgba(0, 0, 0, .36),
+      0 0 50px rgba(54, 183, 240, .055);
+  }
+
+  .cc-contact__form {
+    position: relative;
+    overflow: hidden;
+    padding: 36px;
+    border-radius: 23px;
+    background:
+      linear-gradient(145deg, rgba(12, 35, 51, .96), rgba(4, 17, 27, .98));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+  }
+
+  .cc-contact__form::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -100px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(54, 183, 240, .08);
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  .cc-contact__form-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 26px;
+  }
+
+  .cc-contact__form-title {
+    margin: 0;
+    color: var(--cc-contact-white);
+    font-size: 25px;
+    line-height: 1.1;
+    font-weight: 590;
+    letter-spacing: -.04em;
+  }
+
+  .cc-contact__form-copy {
+    margin: 9px 0 0;
+    color: var(--cc-contact-muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .cc-contact__fields {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .cc-contact-field {
+    display: grid;
+    gap: 8px;
+  }
+
+  .cc-contact-field--full {
+    grid-column: 1 / -1;
+  }
+
+  .cc-contact-field label {
+    color: rgba(226, 240, 248, .62);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .cc-contact-field input,
+  .cc-contact-field select,
+  .cc-contact-field textarea {
+    width: 100%;
+    min-height: 52px;
+    border: 1px solid rgba(142, 233, 255, .12);
+    border-radius: 12px;
+    outline: none;
+    color: var(--cc-contact-white);
+    background: rgba(2, 12, 20, .62);
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 14px 15px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .02);
+    transition:
+      border-color .22s ease,
+      background-color .22s ease,
+      box-shadow .22s ease;
+  }
+
+  .cc-contact-field textarea {
+    min-height: 116px;
+    resize: vertical;
+  }
+
+  .cc-contact-field select {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--cc-contact-blue-soft) 50%),
+      linear-gradient(135deg, var(--cc-contact-blue-soft) 50%, transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(50% - 2px),
+      calc(100% - 13px) calc(50% - 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 38px;
+  }
+
+  .cc-contact-field input::placeholder,
+  .cc-contact-field textarea::placeholder {
+    color: rgba(218, 235, 245, .30);
+  }
+
+  .cc-contact-field input:focus,
+  .cc-contact-field select:focus,
+  .cc-contact-field textarea:focus {
+    border-color: rgba(142, 233, 255, .52);
+    background: rgba(5, 22, 33, .88);
+    box-shadow:
+      0 0 0 4px rgba(54, 183, 240, .075),
+      0 0 24px rgba(54, 183, 240, .055);
+  }
+
+  .cc-contact-field input:invalid:not(:placeholder-shown),
+  .cc-contact-field textarea:invalid:not(:placeholder-shown) {
+    border-color: rgba(255, 155, 155, .56);
+  }
+
+  .cc-contact__consent {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 17px;
+    color: rgba(218, 235, 245, .49);
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .cc-contact__consent input {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin: 1px 0 0;
+    accent-color: var(--cc-contact-blue);
+  }
+
+  .cc-contact__actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-top: 23px;
+  }
+
+  .cc-contact__submit {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    border: 1px solid var(--cc-contact-blue-soft);
+    border-radius: 999px;
+    color: #021018;
+    background: var(--cc-contact-blue-soft);
+    padding: 7px 23px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 720;
+    letter-spacing: -.012em;
+    cursor: pointer;
+    box-shadow: 0 0 28px rgba(54, 183, 240, .13);
+    transition:
+      transform .22s ease,
+      box-shadow .22s ease,
+      background-color .22s ease;
+  }
+
+  .cc-contact__submit:hover,
+  .cc-contact__submit:focus-visible {
+    transform: translateY(-2px);
+    background: #bcf4ff;
+    box-shadow: 0 0 38px rgba(54, 183, 240, .22);
+    outline: none;
+  }
+
+  .cc-contact__submit svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-contact__status {
+    min-height: 20px;
+    margin: 0;
+    color: var(--cc-contact-muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .cc-contact__status[data-state="success"] {
+    color: var(--cc-contact-success);
+  }
+
+  .cc-contact__status[data-state="error"] {
+    color: var(--cc-contact-error);
+  }
+
+  @media (max-width: 950px) {
+    .cc-contact__layout {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+
+    .cc-contact__content {
+      max-width: 760px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .cc-contact__inner {
+      width: min(100% - 24px, 560px);
+      padding: 102px 0 82px;
+    }
+
+    .cc-contact__ambient {
+      top: 65px;
+      font-size: 25vw;
+    }
+
+    .cc-contact__title {
+      font-size: clamp(42px, 11.5vw, 58px);
+    }
+
+    .cc-contact__intro {
+      font-size: 15px;
+    }
+
+    .cc-contact__form {
+      padding: 26px 20px 24px;
+    }
+
+    .cc-contact__fields {
+      grid-template-columns: 1fr;
+    }
+
+    .cc-contact-field--full {
+      grid-column: auto;
+    }
+
+    .cc-contact__actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .cc-contact__submit,
+    .cc-contact__whatsapp {
+      width: 100%;
+    }
+
+    .cc-contact__submit {
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cc-contact__whatsapp,
+    .cc-contact__submit,
+    .cc-contact-field input,
+    .cc-contact-field select,
+    .cc-contact-field textarea {
+      transition: none;
+    }
+  }
+</style>
+
+<section class="cc-contact" id="contacto" aria-labelledby="cc-contact-title">
+  <p class="cc-contact__ambient" aria-hidden="true">contacto</p>
+
+  <div class="cc-contact__inner">
+    <div class="cc-contact__layout">
+      <div class="cc-contact__content">
+        <div class="cc-contact__eyebrow">
+          <svg class="cc-contact__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span>Hablemos de tu empresa</span>
+        </div>
+
+        <h2 class="cc-contact__title" id="cc-contact-title">
+          ¿Damos juntos el próximo
+          <em>salto de tu negocio?</em>
+        </h2>
+
+        <p class="cc-contact__intro">
+          Cuéntanos qué quieres mejorar. Analizaremos la situación y te
+          explicaremos con claridad <strong>qué solución puede tener más sentido.</strong>
+        </p>
+
+        <ul class="cc-contact__benefits">
+          <li>Primera conversación sin compromiso.</li>
+          <li>Propuesta adaptada a tu empresa.</li>
+          <li>Alcance, tiempos y costes transparentes.</li>
+        </ul>
+
+        <a
+          class="cc-contact__whatsapp"
+          href="#"
+          aria-label="Contactar con ConejoCreative por WhatsApp"
+        >
+          <span class="cc-contact__whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z"
+                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M9 8.5c.5 3 2 4.5 5 5"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Prefiero hablar por WhatsApp
+        </a>
+      </div>
+
+      <div class="cc-contact__form-shell">
+        <form class="cc-contact__form" data-cc-contact-form novalidate>
+          <header class="cc-contact__form-header">
+            <h3 class="cc-contact__form-title">Cuéntanos qué necesita tu empresa</h3>
+            <p class="cc-contact__form-copy">
+              Responderemos con los próximos pasos.
+            </p>
+          </header>
+
+          <div class="cc-contact__fields">
+            <div class="cc-contact-field">
+              <label for="cc-contact-name">Nombre</label>
+              <input
+                id="cc-contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Tu nombre"
+                required
+              >
+            </div>
+
+            <div class="cc-contact-field">
+              <label for="cc-contact-company">Empresa</label>
+              <input
+                id="cc-contact-company"
+                name="company"
+                type="text"
+                autocomplete="organization"
+                placeholder="Nombre de la empresa"
+                required
+              >
+            </div>
+
+            <div class="cc-contact-field">
+              <label for="cc-contact-email">Correo electrónico</label>
+              <input
+                id="cc-contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="nombre@empresa.com"
+                required
+              >
+            </div>
+
+            <div class="cc-contact-field">
+              <label for="cc-contact-phone">WhatsApp</label>
+              <input
+                id="cc-contact-phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="+34 600 000 000"
+                required
+              >
+            </div>
+
+            <div class="cc-contact-field cc-contact-field--full">
+              <label for="cc-contact-need">¿Qué quieres mejorar?</label>
+              <select id="cc-contact-need" name="need" required>
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="web">Presencia digital o página web</option>
+                <option value="branding">Branding y posicionamiento</option>
+                <option value="social">Redes sociales y contenidos</option>
+                <option value="attention">Atención, CRM o WhatsApp</option>
+                <option value="software">Software a medida</option>
+                <option value="automation">Automatización e inteligencia artificial</option>
+                <option value="other">Todavía no lo tengo claro</option>
+              </select>
+            </div>
+
+            <div class="cc-contact-field">
+              <label for="cc-contact-deadline">Plazo deseado</label>
+              <select id="cc-contact-deadline" name="deadline">
+                <option value="" selected>Sin definir</option>
+                <option value="urgent">Lo antes posible</option>
+                <option value="1-2">Entre 1 y 2 meses</option>
+                <option value="3-4">Entre 3 y 4 meses</option>
+                <option value="later">Más adelante</option>
+              </select>
+            </div>
+
+            <div class="cc-contact-field">
+              <label for="cc-contact-budget">Inversión estimada</label>
+              <select id="cc-contact-budget" name="budget">
+                <option value="" selected>Prefiero hablarlo</option>
+                <option value="under-1500">Hasta 1.500 €</option>
+                <option value="1500-3000">Entre 1.500 € y 3.000 €</option>
+                <option value="3000-6000">Entre 3.000 € y 6.000 €</option>
+                <option value="over-6000">Más de 6.000 €</option>
+              </select>
+            </div>
+
+            <div class="cc-contact-field cc-contact-field--full">
+              <label for="cc-contact-message">Cuéntanos brevemente el proyecto</label>
+              <textarea
+                id="cc-contact-message"
+                name="message"
+                placeholder="Qué problema quieres resolver, qué tienes actualmente y qué resultado buscas."
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <label class="cc-contact__consent">
+            <input type="checkbox" name="privacy" required>
+            <span>
+              Acepto que ConejoCreative utilice estos datos para responder a mi solicitud.
+            </span>
+          </label>
+
+          <div class="cc-contact__actions">
+            <button class="cc-contact__submit" type="submit">
+              Enviar mi solicitud
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4.5 10h11M11 5.5 15.5 10 11 14.5"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <p
+              class="cc-contact__status"
+              data-cc-contact-status
+              aria-live="polite"
+            ></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const form = document.querySelector("[data-cc-contact-form]");
+    if (!form || form.dataset.ready === "true") return;
+
+    form.dataset.ready = "true";
+
+    const status = form.querySelector("[data-cc-contact-status]");
+    const submitButton = form.querySelector(".cc-contact__submit");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        status.textContent = "Revisa los campos obligatorios.";
+        status.dataset.state = "error";
+        return;
+      }
+
+      submitButton.disabled = true;
+      status.textContent = "Solicitud preparada correctamente.";
+      status.dataset.state = "success";
+
+      window.setTimeout(() => {
+        submitButton.disabled = false;
+      }, 900);
+
+      /*
+        Conecta aquí tu endpoint real.
+
+        Ejemplo:
+        const data = Object.fromEntries(new FormData(form));
+
+        fetch("/api/contacto", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+      */
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preguntas frecuentes — ConejoCreative</title>
+  <meta name="description" content="Preguntas frecuentes sobre los servicios y proyectos de ConejoCreative.">
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #01070e;
+    }
+  </style>
+</head>
+<body>
+<!--
+  Sección 14 — Preguntas frecuentes
+  Sección independiente para ConejoCreative.
+-->
+<style>
+  .cc-faq,
+  .cc-faq * {
+    box-sizing: border-box;
+  }
+
+  .cc-faq {
+    --cc-faq-bg: #01070e;
+    --cc-faq-bg-soft: #03131f;
+    --cc-faq-panel: rgba(11, 30, 44, .90);
+    --cc-faq-panel-open: rgba(14, 39, 56, .96);
+    --cc-faq-white: #f5fbff;
+    --cc-faq-muted: rgba(218, 235, 245, .67);
+    --cc-faq-blue: #36b7f0;
+    --cc-faq-blue-soft: #8ee9ff;
+    --cc-faq-border: rgba(142, 233, 255, .13);
+
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--cc-faq-white);
+    background:
+      linear-gradient(
+        180deg,
+        #01070e 0%,
+        #020b13 10%,
+        #03131f 48%,
+        #020d16 82%,
+        #01070e 100%
+      );
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .cc-faq::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 35%, rgba(54, 183, 240, .09), transparent 28%),
+      radial-gradient(circle at 78% 55%, rgba(142, 233, 255, .055), transparent 28%),
+      linear-gradient(rgba(142, 233, 255, .022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .022) 1px, transparent 1px);
+    background-size: auto, auto, 76px 76px, 76px 76px;
+  }
+
+  .cc-faq::after {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    pointer-events: none;
+    opacity: .024;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.94'/%3E%3C/svg%3E");
+  }
+
+  .cc-faq__ambient {
+    position: absolute;
+    z-index: -2;
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(142, 233, 255, .026);
+    font-size: clamp(128px, 18vw, 280px);
+    line-height: .78;
+    font-weight: 700;
+    letter-spacing: -.09em;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cc-faq__inner {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 130px 0 108px;
+  }
+
+  .cc-faq__layout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(320px, .78fr) minmax(0, 1.22fr);
+    gap: 94px;
+    align-items: start;
+  }
+
+  .cc-faq__content {
+    position: sticky;
+    top: 120px;
+    padding-top: 8px;
+  }
+
+  .cc-faq__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+    color: var(--cc-faq-blue-soft);
+  }
+
+  .cc-faq__mark {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 16px rgba(54, 183, 240, .28));
+  }
+
+  .cc-faq__eyebrow span {
+    color: rgba(224, 240, 249, .68);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-faq__title {
+    margin: 0;
+    color: var(--cc-faq-white);
+    font-size: clamp(58px, 7vw, 96px);
+    line-height: .88;
+    font-weight: 540;
+    letter-spacing: -.075em;
+  }
+
+  .cc-faq__title span {
+    display: block;
+    color: var(--cc-faq-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: .56em;
+    line-height: 1.08;
+    font-weight: 400;
+    letter-spacing: -.045em;
+  }
+
+  .cc-faq__intro {
+    max-width: 430px;
+    margin: 28px 0 0;
+    color: var(--cc-faq-muted);
+    font-size: 16px;
+    line-height: 1.56;
+    letter-spacing: -.016em;
+  }
+
+  .cc-faq__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 49px;
+    margin-top: 30px;
+    padding: 6px 18px 6px 6px;
+    border: 1px solid rgba(142, 233, 255, .62);
+    border-radius: 999px;
+    color: var(--cc-faq-blue-soft);
+    background: rgba(3, 17, 27, .76);
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -.012em;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 0 0 rgba(54, 183, 240, 0);
+    transition:
+      transform .25s ease,
+      color .25s ease,
+      border-color .25s ease,
+      background-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .cc-faq__cta-icon {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #021018;
+    background: var(--cc-faq-blue-soft);
+  }
+
+  .cc-faq__cta svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-faq__cta:hover,
+  .cc-faq__cta:focus-visible {
+    color: var(--cc-faq-white);
+    border-color: var(--cc-faq-blue-soft);
+    background: rgba(8, 36, 52, .94);
+    box-shadow: 0 0 30px rgba(54, 183, 240, .14);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .cc-faq__list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .cc-faq-item {
+    overflow: hidden;
+    border: 1px solid var(--cc-faq-border);
+    border-radius: 16px;
+    background:
+      linear-gradient(145deg, rgba(14, 40, 57, .84), var(--cc-faq-panel));
+    box-shadow:
+      0 18px 48px rgba(0, 0, 0, .22),
+      inset 0 1px 0 rgba(255, 255, 255, .025);
+    transition:
+      border-color .25s ease,
+      background-color .25s ease,
+      box-shadow .25s ease,
+      transform .25s ease;
+  }
+
+  .cc-faq-item:hover {
+    border-color: rgba(142, 233, 255, .23);
+    transform: translateY(-2px);
+  }
+
+  .cc-faq-item[open] {
+    border-color: rgba(142, 233, 255, .28);
+    background: var(--cc-faq-panel-open);
+    box-shadow:
+      0 24px 58px rgba(0, 0, 0, .28),
+      0 0 28px rgba(54, 183, 240, .055),
+      inset 0 1px 0 rgba(255, 255, 255, .035);
+  }
+
+  .cc-faq-item__question {
+    position: relative;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 34px;
+    gap: 15px;
+    align-items: center;
+    min-height: 76px;
+    padding: 15px 19px;
+    color: var(--cc-faq-white);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .cc-faq-item__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .cc-faq-item__number {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(142, 233, 255, .15);
+    border-radius: 10px;
+    color: var(--cc-faq-blue-soft);
+    background: rgba(5, 21, 32, .72);
+    font-size: 11px;
+    font-weight: 720;
+    letter-spacing: .06em;
+  }
+
+  .cc-faq-item__label {
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 560;
+    letter-spacing: -.022em;
+  }
+
+  .cc-faq-item__toggle {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    justify-self: end;
+    border-radius: 50%;
+    color: var(--cc-faq-blue-soft);
+    background: rgba(54, 183, 240, .055);
+  }
+
+  .cc-faq-item__toggle::before,
+  .cc-faq-item__toggle::after {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 1px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform .25s ease;
+  }
+
+  .cc-faq-item__toggle::after {
+    transform: rotate(90deg);
+  }
+
+  .cc-faq-item[open] .cc-faq-item__toggle::after {
+    transform: rotate(0deg);
+  }
+
+  .cc-faq-item__answer {
+    padding: 0 72px 23px 76px;
+    color: var(--cc-faq-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: -.013em;
+  }
+
+  .cc-faq-item__answer p {
+    margin: 0;
+  }
+
+  .cc-faq-item[open] .cc-faq-item__answer {
+    animation: cc-faq-answer .28s ease both;
+  }
+
+  @keyframes cc-faq-answer {
+    from {
+      opacity: 0;
+      transform: translateY(-7px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .cc-faq__layout {
+      grid-template-columns: 1fr;
+      gap: 58px;
+    }
+
+    .cc-faq__content {
+      position: relative;
+      top: auto;
+      max-width: 720px;
+    }
+
+    .cc-faq__title {
+      font-size: clamp(58px, 12vw, 88px);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .cc-faq__inner {
+      width: min(100% - 24px, 560px);
+      padding: 102px 0 82px;
+    }
+
+    .cc-faq__ambient {
+      top: 64px;
+      font-size: 30vw;
+    }
+
+    .cc-faq__title {
+      font-size: clamp(54px, 17vw, 78px);
+    }
+
+    .cc-faq__title span {
+      font-size: .5em;
+    }
+
+    .cc-faq__intro {
+      font-size: 15px;
+    }
+
+    .cc-faq-item__question {
+      grid-template-columns: 34px minmax(0, 1fr) 30px;
+      gap: 12px;
+      min-height: 72px;
+      padding: 14px;
+    }
+
+    .cc-faq-item__number {
+      width: 30px;
+      height: 30px;
+    }
+
+    .cc-faq-item__label {
+      font-size: 15px;
+    }
+
+    .cc-faq-item__answer {
+      padding: 0 48px 21px 60px;
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .cc-faq__cta {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .cc-faq-item__answer {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cc-faq-item,
+    .cc-faq-item__toggle::after,
+    .cc-faq__cta {
+      transition: none;
+    }
+
+    .cc-faq-item[open] .cc-faq-item__answer {
+      animation: none;
+    }
+  }
+</style>
+
+<section class="cc-faq" id="faq" aria-labelledby="cc-faq-title">
+  <p class="cc-faq__ambient" aria-hidden="true">FAQ</p>
+
+  <div class="cc-faq__inner">
+    <div class="cc-faq__layout">
+      <header class="cc-faq__content">
+        <div class="cc-faq__eyebrow">
+          <svg class="cc-faq__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span>Preguntas frecuentes</span>
+        </div>
+
+        <h2 class="cc-faq__title" id="cc-faq-title">
+          FAQ
+          <span>Dudas frecuentes</span>
+        </h2>
+
+        <p class="cc-faq__intro">
+          Respuestas claras sobre nuestros servicios, procesos, soporte
+          y forma de trabajar con pequeñas y medianas empresas.
+        </p>
+
+        <a class="cc-faq__cta" href="#contacto">
+          <span class="cc-faq__cta-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none">
+              <path d="M4.5 10h11M11 5.5 15.5 10 11 14.5"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          Hablar con nuestro equipo
+        </a>
+      </header>
+
+      <div class="cc-faq__list">
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">01</span>
+            <span class="cc-faq-item__label">
+              No tengo página web. ¿Podéis crear toda mi presencia digital?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              Sí. Podemos trabajar desde la identidad y el posicionamiento
+              hasta la creación de la web y la organización de los canales digitales.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">02</span>
+            <span class="cc-faq-item__label">
+              Ya tengo web e Instagram. ¿También podéis mejorarlos?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              Sí. Analizamos lo que ya existe, identificamos los problemas
+              y proponemos las mejoras más adecuadas.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">03</span>
+            <span class="cc-faq-item__label">
+              No sé qué servicio necesita mi empresa. ¿Podéis orientarme?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              Sí. Puedes explicarnos qué quieres mejorar o qué problema estás teniendo.
+              Te ayudaremos a definir qué solución puede tener más sentido.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">04</span>
+            <span class="cc-faq-item__label">
+              ¿Trabajáis solamente con proyectos grandes?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              No. Adaptamos el alcance a las necesidades, prioridades
+              y posibilidades de cada pyme.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">05</span>
+            <span class="cc-faq-item__label">
+              ¿Ofrecéis soporte después de la entrega?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              Sí. Las condiciones y el alcance del soporte
+              se definen claramente para cada proyecto.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">06</span>
+            <span class="cc-faq-item__label">
+              ¿También formáis al equipo?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              Sí. Cuando el proyecto lo requiere, enseñamos al equipo a utilizar
+              las herramientas y aplicar los procesos implantados.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">07</span>
+            <span class="cc-faq-item__label">
+              ¿Cuánto cuesta un proyecto?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              Depende del alcance, las funcionalidades y la complejidad.
+              Después de analizar la necesidad, presentamos una propuesta detallada.
+            </p>
+          </div>
+        </details>
+
+        <details class="cc-faq-item">
+          <summary class="cc-faq-item__question">
+            <span class="cc-faq-item__number">08</span>
+            <span class="cc-faq-item__label">
+              ¿Cuánto tiempo tarda?
+            </span>
+            <span class="cc-faq-item__toggle" aria-hidden="true"></span>
+          </summary>
+
+          <div class="cc-faq-item__answer">
+            <p>
+              El plazo depende del tipo de proyecto. Antes de comenzar se definen
+              las etapas, las prioridades y una estimación de fechas.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

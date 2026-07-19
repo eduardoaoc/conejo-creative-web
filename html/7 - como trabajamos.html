@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo trabajamos — ConejoCreative</title>
+  <meta name="description" content="Proceso de trabajo de ConejoCreative: análisis, priorización, implementación y acompañamiento.">
+  <style>
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #01070e;
+    }
+  </style>
+</head>
+<body>
+<!--
+  Sección 8 — Cómo trabajamos
+  Diseñada para encajar después de la sección del conejo en el sofá.
+-->
+<style>
+  .cc-process,
+  .cc-process * {
+    box-sizing: border-box;
+  }
+
+  .cc-process {
+    --cc-process-bg: #01070e;
+    --cc-process-bg-soft: #04111c;
+    --cc-process-card: rgba(9, 29, 43, .92);
+    --cc-process-card-strong: rgba(12, 37, 54, .96);
+    --cc-process-line: rgba(54, 183, 240, .30);
+    --cc-process-line-strong: rgba(142, 233, 255, .74);
+    --cc-process-white: #f5fbff;
+    --cc-process-muted: rgba(218, 235, 245, .67);
+    --cc-process-blue: #36b7f0;
+    --cc-process-blue-soft: #8ee9ff;
+    --cc-process-border: rgba(142, 233, 255, .13);
+
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--cc-process-white);
+    background:
+      linear-gradient(
+        180deg,
+        #01070e 0%,
+        #020b13 8%,
+        #03111c 27%,
+        #020b13 72%,
+        #01070e 100%
+      );
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .cc-process::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(54, 183, 240, .09), transparent 28%),
+      radial-gradient(circle at 78% 44%, rgba(142, 233, 255, .055), transparent 28%),
+      linear-gradient(rgba(142, 233, 255, .026) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .026) 1px, transparent 1px);
+    background-size: auto, auto, 72px 72px, 72px 72px;
+  }
+
+  .cc-process::after {
+    content: "";
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    pointer-events: none;
+    opacity: .025;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.83' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.95'/%3E%3C/svg%3E");
+  }
+
+  .cc-process__ambient {
+    position: absolute;
+    z-index: -2;
+    top: 74px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(142, 233, 255, .025);
+    font-size: clamp(120px, 18vw, 280px);
+    line-height: .8;
+    font-weight: 700;
+    letter-spacing: -.08em;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cc-process__inner {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 132px 0 110px;
+  }
+
+  .cc-process__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+    gap: 84px;
+    align-items: end;
+    margin-bottom: 92px;
+  }
+
+  .cc-process__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin-bottom: 18px;
+    padding: 7px 12px;
+    border: 1px solid rgba(142, 233, 255, .14);
+    border-radius: 999px;
+    color: var(--cc-process-blue-soft);
+    background: rgba(7, 28, 42, .55);
+    font-size: 10px;
+    font-weight: 680;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-process__eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cc-process-blue-soft);
+    box-shadow: 0 0 14px rgba(142, 233, 255, .75);
+  }
+
+  .cc-process__title {
+    max-width: 760px;
+    margin: 0;
+    color: var(--cc-process-white);
+    font-size: clamp(48px, 5.8vw, 78px);
+    line-height: .98;
+    font-weight: 520;
+    letter-spacing: -.062em;
+    text-wrap: balance;
+  }
+
+  .cc-process__title em {
+    color: var(--cc-process-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.02em;
+    font-weight: 400;
+    letter-spacing: -.05em;
+  }
+
+  .cc-process__intro {
+    margin: 0 0 6px;
+    color: var(--cc-process-muted);
+    font-size: 17px;
+    line-height: 1.58;
+    letter-spacing: -.018em;
+    text-wrap: balance;
+  }
+
+  .cc-process__intro strong {
+    color: rgba(241, 249, 254, .94);
+    font-weight: 620;
+  }
+
+  .cc-process__timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 22px;
+    min-height: auto;
+  }
+
+  .cc-process__timeline::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 52px;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        var(--cc-process-line) 8%,
+        var(--cc-process-line-strong) 50%,
+        var(--cc-process-line) 92%,
+        transparent
+      );
+    box-shadow: 0 0 22px rgba(54, 183, 240, .16);
+  }
+
+  .cc-process-step {
+    --cc-step-shift: 0px;
+
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    transform: none;
+  }
+
+  .cc-process-step:nth-child(1),
+  .cc-process-step:nth-child(2),
+  .cc-process-step:nth-child(3),
+  .cc-process-step:nth-child(4) {
+    --cc-step-shift: 0px;
+  }
+
+  .cc-process-step__rail {
+    position: relative;
+    height: 53px;
+    margin-bottom: 22px;
+  }
+
+  .cc-process-step__rail::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 53px;
+    background:
+      linear-gradient(
+        180deg,
+        var(--cc-process-line-strong),
+        rgba(54, 183, 240, .12)
+      );
+  }
+
+  .cc-process-step__dot {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    transform: translateX(-50%);
+    border: 1px solid rgba(142, 233, 255, .28);
+    border-radius: 50%;
+    color: var(--cc-process-blue-soft);
+    background:
+      radial-gradient(circle at 35% 30%, rgba(142, 233, 255, .18), transparent 55%),
+      #071824;
+    font-size: 12px;
+    font-weight: 720;
+    letter-spacing: .08em;
+    box-shadow:
+      0 0 0 8px rgba(54, 183, 240, .035),
+      0 0 28px rgba(54, 183, 240, .13);
+  }
+
+  .cc-process-step__card {
+    position: relative;
+    min-height: 330px;
+    height: 100%;
+    padding: 34px 30px 30px;
+    overflow: hidden;
+    border: 1px solid var(--cc-process-border);
+    border-radius: 20px;
+    background:
+      linear-gradient(180deg, rgba(16, 45, 64, .92), rgba(7, 24, 37, .96));
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, .24),
+      inset 0 1px 0 rgba(255, 255, 255, .03);
+    transition:
+      transform .28s ease,
+      border-color .28s ease,
+      box-shadow .28s ease;
+  }
+
+  .cc-process-step__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(135deg, rgba(142, 233, 255, .08), transparent 34%);
+  }
+
+  .cc-process-step__card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(142, 233, 255, .25);
+    box-shadow:
+      0 30px 74px rgba(0, 0, 0, .31),
+      0 0 28px rgba(54, 183, 240, .065),
+      inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+
+  .cc-process-step__meta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 26px;
+  }
+
+  .cc-process-step__label {
+    color: rgba(224, 240, 249, .48);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-process-step__icon {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(142, 233, 255, .15);
+    border-radius: 10px;
+    color: var(--cc-process-blue-soft);
+    background: rgba(6, 24, 37, .72);
+  }
+
+  .cc-process-step__icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-process-step__title {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--cc-process-white);
+    font-size: 30px;
+    line-height: 1.04;
+    font-weight: 560;
+    letter-spacing: -.045em;
+  }
+
+  .cc-process-step__text {
+    position: relative;
+    z-index: 1;
+    margin: 20px 0 0;
+    color: var(--cc-process-muted);
+    font-size: 15px;
+    line-height: 1.58;
+    letter-spacing: -.014em;
+  }
+
+  .cc-process-step__details {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 10px;
+    margin: 26px 0 0;
+    padding: 22px 0 0;
+    border-top: 1px solid rgba(142, 233, 255, .08);
+    list-style: none;
+  }
+
+  .cc-process-step__details li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: rgba(220, 237, 247, .58);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .cc-process-step__details li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 5px;
+    height: 5px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background: var(--cc-process-blue);
+    box-shadow: 0 0 10px rgba(54, 183, 240, .42);
+  }
+
+  .cc-process__footer {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 44px;
+    align-items: center;
+    margin-top: 96px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(142, 233, 255, .09);
+  }
+
+  .cc-process__quote {
+    max-width: 790px;
+    margin: 0;
+    color: var(--cc-process-muted);
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.43;
+    letter-spacing: -.024em;
+    text-wrap: balance;
+  }
+
+  .cc-process__quote strong {
+    color: var(--cc-process-white);
+    font-weight: 610;
+  }
+
+  .cc-process__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 49px;
+    padding: 6px 18px 6px 6px;
+    border: 1px solid rgba(142, 233, 255, .62);
+    border-radius: 999px;
+    color: var(--cc-process-blue-soft);
+    background: rgba(3, 17, 27, .76);
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -.012em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      color .25s ease,
+      border-color .25s ease,
+      background-color .25s ease,
+      box-shadow .25s ease,
+      transform .25s ease;
+  }
+
+  .cc-process__cta-icon {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #021018;
+    background: var(--cc-process-blue-soft);
+    transition: transform .25s ease;
+  }
+
+  .cc-process__cta svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-process__cta:hover,
+  .cc-process__cta:focus-visible {
+    color: #f2fbff;
+    border-color: var(--cc-process-blue-soft);
+    background: rgba(8, 36, 52, .94);
+    box-shadow: 0 0 30px rgba(54, 183, 240, .14);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .cc-process__cta:hover .cc-process__cta-icon,
+  .cc-process__cta:focus-visible .cc-process__cta-icon {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 1020px) {
+    .cc-process__header {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 72px;
+    }
+
+    .cc-process__intro {
+      max-width: 720px;
+    }
+
+    .cc-process__timeline {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      min-height: auto;
+    }
+
+    .cc-process__timeline::before {
+      display: none;
+    }
+
+    .cc-process-step,
+    .cc-process-step:nth-child(n) {
+      transform: none;
+      padding: 0;
+    }
+
+    .cc-process-step__rail {
+      display: none;
+    }
+
+    .cc-process-step__card {
+      min-height: 330px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .cc-process__inner {
+      width: min(100% - 28px, 620px);
+      padding: 104px 0 82px;
+    }
+
+    .cc-process__ambient {
+      top: 62px;
+      font-size: 29vw;
+    }
+
+    .cc-process__title {
+      font-size: clamp(42px, 11vw, 62px);
+    }
+
+    .cc-process__timeline {
+      grid-template-columns: 1fr;
+    }
+
+    .cc-process-step__card {
+      min-height: auto;
+      padding: 28px 24px 27px;
+    }
+
+    .cc-process__footer {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 68px;
+    }
+
+    .cc-process__cta {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cc-process__inner {
+      width: min(100% - 24px, 460px);
+    }
+
+    .cc-process__header {
+      margin-bottom: 52px;
+    }
+
+    .cc-process__title {
+      font-size: clamp(38px, 11.5vw, 50px);
+    }
+
+    .cc-process__intro {
+      font-size: 15px;
+    }
+
+    .cc-process__cta {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cc-process-step {
+      animation: cc-process-reveal .75s cubic-bezier(.2, .75, .2, 1) both;
+      animation-delay: calc(var(--cc-order, 0) * 110ms);
+    }
+
+    @keyframes cc-process-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (max-width: 1020px) and (prefers-reduced-motion: no-preference) {
+    @keyframes cc-process-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>
+
+<section class="cc-process" id="como-trabajamos" aria-labelledby="cc-process-title">
+  <p class="cc-process__ambient" aria-hidden="true">proceso</p>
+
+  <div class="cc-process__inner">
+    <header class="cc-process__header">
+      <div>
+        <span class="cc-process__eyebrow">Cómo trabajamos</span>
+
+        <h2 class="cc-process__title" id="cc-process-title">
+          Primero entendemos el negocio.
+          <em>Después aplicamos la tecnología.</em>
+        </h2>
+      </div>
+
+      <p class="cc-process__intro">
+        Avanzamos de forma ordenada, con objetivos claros y decisiones explicadas.
+        <strong>Cada etapa conecta estrategia, ejecución y mejora continua.</strong>
+      </p>
+    </header>
+
+    <div class="cc-process__timeline" aria-label="Proceso de trabajo en cuatro etapas">
+      <article class="cc-process-step" style="--cc-order: 0">
+        <div class="cc-process-step__rail" aria-hidden="true">
+          <span class="cc-process-step__dot">01</span>
+        </div>
+
+        <div class="cc-process-step__card">
+          <div class="cc-process-step__meta">
+            <span class="cc-process-step__label">Diagnóstico</span>
+            <span class="cc-process-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/>
+                <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="cc-process-step__title">Analizamos</h3>
+
+          <p class="cc-process-step__text">
+            Conocemos la empresa, su presencia digital, sus procesos, su atención y sus objetivos.
+          </p>
+
+          <ul class="cc-process-step__details">
+            <li>Situación digital actual</li>
+            <li>Procesos y herramientas</li>
+            <li>Objetivos y prioridades</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="cc-process-step" style="--cc-order: 1">
+        <div class="cc-process-step__rail" aria-hidden="true">
+          <span class="cc-process-step__dot">02</span>
+        </div>
+
+        <div class="cc-process-step__card">
+          <div class="cc-process-step__meta">
+            <span class="cc-process-step__label">Estrategia</span>
+            <span class="cc-process-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 18 10 13l3 3 6-8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 8h4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="cc-process-step__title">Priorizamos</h3>
+
+          <p class="cc-process-step__text">
+            Identificamos qué está frenando los resultados y definimos por dónde conviene empezar.
+          </p>
+
+          <ul class="cc-process-step__details">
+            <li>Problemas con mayor impacto</li>
+            <li>Orden de implementación</li>
+            <li>Alcance, tiempos y métricas</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="cc-process-step" style="--cc-order: 2">
+        <div class="cc-process-step__rail" aria-hidden="true">
+          <span class="cc-process-step__dot">03</span>
+        </div>
+
+        <div class="cc-process-step__card">
+          <div class="cc-process-step__meta">
+            <span class="cc-process-step__label">Ejecución</span>
+            <span class="cc-process-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="m7 17 10-10M8.5 7H17v8.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 12v7h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="cc-process-step__title">Implementamos</h3>
+
+          <p class="cc-process-step__text">
+            Diseñamos, desarrollamos y ponemos en marcha las soluciones acordadas.
+          </p>
+
+          <ul class="cc-process-step__details">
+            <li>Diseño y desarrollo</li>
+            <li>Integración y automatización</li>
+            <li>Pruebas y puesta en marcha</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="cc-process-step" style="--cc-order: 3">
+        <div class="cc-process-step__rail" aria-hidden="true">
+          <span class="cc-process-step__dot">04</span>
+        </div>
+
+        <div class="cc-process-step__card">
+          <div class="cc-process-step__meta">
+            <span class="cc-process-step__label">Evolución</span>
+            <span class="cc-process-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 8.5A7 7 0 1 1 5.5 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M6 4.5v4H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="cc-process-step__title">Medimos y acompañamos</h3>
+
+          <p class="cc-process-step__text">
+            Revisamos el funcionamiento, formamos al equipo y prestamos el soporte definido para el proyecto.
+          </p>
+
+          <ul class="cc-process-step__details">
+            <li>Revisión de resultados</li>
+            <li>Formación del equipo</li>
+            <li>Soporte y mejoras</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <footer class="cc-process__footer">
+      <blockquote class="cc-process__quote">
+        <strong>En cada etapa sabrás qué estamos haciendo, por qué lo hacemos</strong>
+        y qué esperamos mejorar.
+      </blockquote>
+
+      <a class="cc-process__cta" href="#contacto">
+        <span class="cc-process__cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none">
+            <path d="M4.5 10h11M11 5.5 15.5 10 11 14.5"
+              stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Hablar sobre mi empresa
+      </a>
+    </footer>
+  </div>
+</section>
+</body>
+</html>

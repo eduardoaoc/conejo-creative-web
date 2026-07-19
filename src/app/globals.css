@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens de tema de Tailwind CSS v4.
+ * La escala `brand` es un acento provisional hasta definir la identidad visual final.
+ */
+@theme {
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial,
+    sans-serif;
+
+  --color-brand-50: #fff4ed;
+  --color-brand-100: #ffe6d5;
+  --color-brand-200: #feccaa;
+  --color-brand-300: #fdac74;
+  --color-brand-400: #fb8a3c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --color-brand-800: #9a3412;
+  --color-brand-900: #7c2d12;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-zinc-800 antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+}
+
+/*
+ * Respeto global a `prefers-reduced-motion`.
+ * Motion y GSAP también lo comprueban por su cuenta; esto cubre las
+ * transiciones y animaciones declaradas solo con CSS.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

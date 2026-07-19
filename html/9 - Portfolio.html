@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio — ConejoCreative</title>
+  <meta name="description" content="Selección de proyectos de ConejoCreative.">
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #01070e;
+    }
+  </style>
+</head>
+<body>
+<!--
+  Sección — Portfolio
+  Debe colocarse inmediatamente después de #testimonios
+  y antes de #como-trabajamos.
+-->
+<style>
+  .cc-portfolio,
+  .cc-portfolio * {
+    box-sizing: border-box;
+  }
+
+  .cc-portfolio {
+    --cc-port-bg: #01070e;
+    --cc-port-bg-soft: #03121d;
+    --cc-port-card: rgba(8, 25, 38, .94);
+    --cc-port-card-hover: rgba(12, 36, 52, .98);
+    --cc-port-white: #f5fbff;
+    --cc-port-muted: rgba(219, 236, 246, .66);
+    --cc-port-blue: #36b7f0;
+    --cc-port-blue-soft: #8ee9ff;
+    --cc-port-border: rgba(142, 233, 255, .13);
+
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--cc-port-white);
+    background:
+      linear-gradient(
+        180deg,
+        #01070e 0%,
+        #020b13 9%,
+        #03131f 43%,
+        #02101a 76%,
+        #01070e 100%
+      );
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .cc-portfolio::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 21%, rgba(54, 183, 240, .08), transparent 27%),
+      radial-gradient(circle at 76% 64%, rgba(142, 233, 255, .07), transparent 30%),
+      linear-gradient(rgba(142, 233, 255, .022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .022) 1px, transparent 1px);
+    background-size: auto, auto, 78px 78px, 78px 78px;
+  }
+
+  .cc-portfolio::after {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    pointer-events: none;
+    opacity: .024;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.94'/%3E%3C/svg%3E");
+  }
+
+  .cc-portfolio__inner {
+    width: min(1460px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 128px 0 112px;
+  }
+
+  .cc-portfolio__top,
+  .cc-portfolio__bottom {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    align-items: start;
+    gap: 58px;
+  }
+
+  .cc-portfolio__top {
+    grid-template-columns: minmax(310px, .78fr) minmax(0, 1.55fr);
+  }
+
+  .cc-portfolio__bottom {
+    grid-template-columns: minmax(0, 1.38fr) minmax(280px, .62fr);
+    margin-top: 72px;
+    align-items: end;
+  }
+
+  .cc-portfolio__heading {
+    max-width: 470px;
+    padding-top: 8px;
+  }
+
+  .cc-portfolio__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 18px;
+    color: var(--cc-port-blue-soft);
+  }
+
+  .cc-portfolio__mark {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 16px rgba(54, 183, 240, .26));
+  }
+
+  .cc-portfolio__eyebrow span {
+    color: rgba(224, 240, 249, .68);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .cc-portfolio__title {
+    margin: 0;
+    color: var(--cc-port-white);
+    font-size: clamp(49px, 5.3vw, 76px);
+    line-height: .98;
+    font-weight: 520;
+    letter-spacing: -.062em;
+  }
+
+  .cc-portfolio__title em {
+    color: var(--cc-port-blue-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.03em;
+    font-weight: 400;
+    letter-spacing: -.05em;
+  }
+
+  .cc-portfolio__intro {
+    max-width: 440px;
+    margin: 23px 0 0;
+    color: var(--cc-port-muted);
+    font-size: 16px;
+    line-height: 1.56;
+    letter-spacing: -.017em;
+  }
+
+  .cc-portfolio__track-shell {
+    min-width: 0;
+  }
+
+  .cc-portfolio__track {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 2px 2px 14px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+  }
+
+  .cc-portfolio__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cc-portfolio-card {
+    flex: 0 0 292px;
+    min-width: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid var(--cc-port-border);
+    border-radius: 18px;
+    background:
+      linear-gradient(180deg, rgba(13, 38, 54, .92), var(--cc-port-card));
+    box-shadow:
+      0 22px 58px rgba(0, 0, 0, .27),
+      inset 0 1px 0 rgba(255, 255, 255, .03);
+    transition:
+      transform .28s ease,
+      border-color .28s ease,
+      background-color .28s ease,
+      box-shadow .28s ease;
+  }
+
+  .cc-portfolio-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(142, 233, 255, .28);
+    background: var(--cc-port-card-hover);
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, .33),
+      0 0 28px rgba(54, 183, 240, .06),
+      inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+
+  .cc-portfolio-card__visual {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 46%, rgba(54, 183, 240, .22), transparent 44%),
+      linear-gradient(145deg, #0d2637, #05111b 72%);
+  }
+
+  .cc-portfolio-card__visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .32;
+    background:
+      linear-gradient(rgba(142, 233, 255, .055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142, 233, 255, .055) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .cc-device {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    width: 210px;
+    height: 128px;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 5px 5px;
+    background: #0a1118;
+    box-shadow:
+      0 24px 34px rgba(0, 0, 0, .44),
+      0 0 0 1px rgba(255, 255, 255, .06);
+  }
+
+  .cc-device::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -11px;
+    width: 236px;
+    height: 13px;
+    transform: translateX(-50%);
+    border-radius: 2px 2px 12px 12px;
+    background: linear-gradient(180deg, #c4d4dd, #61717b);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .28);
+  }
+
+  .cc-device__screen {
+    position: absolute;
+    inset: 8px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #08131c;
+  }
+
+  .cc-device__screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, .035) 50%, transparent 51%);
+  }
+
+  .cc-device__nav {
+    height: 19px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 8px;
+    background: rgba(2, 8, 13, .65);
+  }
+
+  .cc-device__nav span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(142, 233, 255, .55);
+  }
+
+  .cc-device__hero {
+    position: relative;
+    height: 58px;
+    padding: 13px 14px;
+  }
+
+  .cc-device__hero b,
+  .cc-device__hero i,
+  .cc-device__hero em {
+    display: block;
+    border-radius: 999px;
+  }
+
+  .cc-device__hero b {
+    width: 68%;
+    height: 8px;
+    background: rgba(245, 251, 255, .92);
+  }
+
+  .cc-device__hero i {
+    width: 48%;
+    height: 5px;
+    margin-top: 7px;
+    background: rgba(142, 233, 255, .68);
+  }
+
+  .cc-device__hero em {
+    width: 36%;
+    height: 13px;
+    margin-top: 10px;
+    background: rgba(54, 183, 240, .86);
+  }
+
+  .cc-device__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 9px 12px 12px;
+  }
+
+  .cc-device__blocks span {
+    height: 28px;
+    border: 1px solid rgba(142, 233, 255, .10);
+    border-radius: 4px;
+    background: rgba(142, 233, 255, .055);
+  }
+
+  .cc-portfolio-card--crm .cc-device__screen {
+    background:
+      linear-gradient(90deg, #07121b 28%, #0a1a26 28%);
+  }
+
+  .cc-portfolio-card--crm .cc-device__hero {
+    margin-left: 28%;
+  }
+
+  .cc-portfolio-card--crm .cc-device__blocks {
+    margin-left: 28%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cc-portfolio-card--ai .cc-device__screen {
+    background:
+      radial-gradient(circle at 70% 45%, rgba(54, 183, 240, .30), transparent 28%),
+      #07121b;
+  }
+
+  .cc-portfolio-card--ai .cc-device__blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .cc-portfolio-card--ai .cc-device__blocks span {
+    height: 13px;
+  }
+
+  .cc-portfolio-card--ecommerce .cc-device__blocks span:nth-child(1),
+  .cc-portfolio-card--ecommerce .cc-device__blocks span:nth-child(2),
+  .cc-portfolio-card--ecommerce .cc-device__blocks span:nth-child(3) {
+    height: 42px;
+    background:
+      linear-gradient(180deg, rgba(142, 233, 255, .16), rgba(142, 233, 255, .045));
+  }
+
+  .cc-portfolio-card--corporate .cc-device__hero {
+    background:
+      linear-gradient(110deg, rgba(54, 183, 240, .18), transparent 65%);
+  }
+
+  .cc-portfolio-card--local .cc-device__screen {
+    background:
+      radial-gradient(circle at 75% 34%, rgba(142, 233, 255, .13), transparent 23%),
+      #07121b;
+  }
+
+  .cc-portfolio-card__body {
+    min-height: 112px;
+    padding: 19px 19px 20px;
+  }
+
+  .cc-portfolio-card__number {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--cc-port-blue-soft);
+    font-size: 11px;
+    font-weight: 760;
+    letter-spacing: .07em;
+  }
+
+  .cc-portfolio-card__title {
+    margin: 0;
+    color: var(--cc-port-white);
+    font-size: 16px;
+    line-height: 1.28;
+    font-weight: 610;
+    letter-spacing: -.025em;
+  }
+
+  .cc-portfolio-card__type {
+    margin: 7px 0 0;
+    color: rgba(218, 235, 245, .48);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .cc-portfolio__controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 11px;
+  }
+
+  .cc-portfolio__control {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(142, 233, 255, .15);
+    border-radius: 50%;
+    color: var(--cc-port-blue-soft);
+    background: rgba(5, 20, 31, .76);
+    cursor: pointer;
+    transition:
+      color .22s ease,
+      background-color .22s ease,
+      border-color .22s ease,
+      transform .22s ease;
+  }
+
+  .cc-portfolio__control:hover,
+  .cc-portfolio__control:focus-visible {
+    color: #021018;
+    border-color: var(--cc-port-blue-soft);
+    background: var(--cc-port-blue-soft);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .cc-portfolio__control svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cc-portfolio__ambient {
+    align-self: center;
+    justify-self: end;
+    margin: 0;
+    color: rgba(142, 233, 255, .035);
+    font-size: clamp(94px, 12vw, 180px);
+    line-height: .8;
+    font-weight: 700;
+    letter-spacing: -.085em;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cc-portfolio__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 58px;
+    padding-top: 31px;
+    border-top: 1px solid rgba(142, 233, 255, .08);
+  }
+
+  .cc-portfolio__footer p {
+    max-width: 720px;
+    margin: 0;
+    color: var(--cc-port-muted);
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: -.018em;
+  }
+
+  .cc-portfolio__footer strong {
+    color: var(--cc-port-white);
+    font-weight: 610;
+  }
+
+  .cc-portfolio__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 6px 18px 6px 6px;
+    border: 1px solid rgba(142, 233, 255, .62);
+    border-radius: 999px;
+    color: var(--cc-port-blue-soft);
+    background: rgba(3, 17, 27, .76);
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -.012em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      transform .25s ease,
+      color .25s ease,
+      border-color .25s ease,
+      background-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .cc-portfolio__cta span {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #021018;
+    background: var(--cc-port-blue-soft);
+  }
+
+  .cc-portfolio__cta svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cc-portfolio__cta:hover,
+  .cc-portfolio__cta:focus-visible {
+    color: var(--cc-port-white);
+    border-color: var(--cc-port-blue-soft);
+    background: rgba(8, 36, 52, .94);
+    box-shadow: 0 0 30px rgba(54, 183, 240, .14);
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  @media (max-width: 1100px) {
+    .cc-portfolio__top,
+    .cc-portfolio__bottom {
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+
+    .cc-portfolio__bottom {
+      margin-top: 54px;
+    }
+
+    .cc-portfolio__heading {
+      max-width: 720px;
+    }
+
+    .cc-portfolio__ambient {
+      display: none;
+    }
+
+    .cc-portfolio-card {
+      flex-basis: 310px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .cc-portfolio__inner {
+      width: min(100% - 24px, 620px);
+      padding: 103px 0 82px;
+    }
+
+    .cc-portfolio__title {
+      font-size: clamp(43px, 12vw, 59px);
+    }
+
+    .cc-portfolio__intro {
+      font-size: 15px;
+    }
+
+    .cc-portfolio-card {
+      flex-basis: min(84vw, 310px);
+    }
+
+    .cc-portfolio__footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cc-portfolio__cta {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<section class="cc-portfolio" id="portfolio" aria-labelledby="cc-portfolio-title">
+  <div class="cc-portfolio__inner">
+    <div class="cc-portfolio__top">
+      <header class="cc-portfolio__heading">
+        <div class="cc-portfolio__eyebrow">
+          <svg class="cc-portfolio__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M7 11v10M12 6v20M17 10v12M22 4v24M27 11v10"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span>Proyectos seleccionados</span>
+        </div>
+
+        <h2 class="cc-portfolio__title" id="cc-portfolio-title">
+          Nuestro <em>portfolio</em>
+        </h2>
+
+        <p class="cc-portfolio__intro">
+          Una selección de productos, webs y sistemas creados para resolver
+          necesidades reales y mejorar la operación de cada empresa.
+        </p>
+      </header>
+
+      <div class="cc-portfolio__track-shell">
+        <div class="cc-portfolio__track" data-portfolio-track="top">
+          <article class="cc-portfolio-card">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">01.</span>
+              <h3 class="cc-portfolio-card__title">Jornafy</h3>
+              <p class="cc-portfolio-card__type">SaaS de control horario</p>
+            </div>
+          </article>
+
+          <article class="cc-portfolio-card cc-portfolio-card--crm">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">02.</span>
+              <h3 class="cc-portfolio-card__title">Conejo CRM</h3>
+              <p class="cc-portfolio-card__type">Gestión comercial multiempresa</p>
+            </div>
+          </article>
+
+          <article class="cc-portfolio-card cc-portfolio-card--ai">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">03.</span>
+              <h3 class="cc-portfolio-card__title">Atención con IA</h3>
+              <p class="cc-portfolio-card__type">WhatsApp, llamadas y agenda</p>
+            </div>
+          </article>
+
+          <article class="cc-portfolio-card cc-portfolio-card--ecommerce">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">04.</span>
+              <h3 class="cc-portfolio-card__title">Repuestos Aire Acondicionado</h3>
+              <p class="cc-portfolio-card__type">Ecommerce especializado</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="cc-portfolio__controls">
+          <button class="cc-portfolio__control" type="button" data-portfolio-prev="top" aria-label="Ver proyectos anteriores">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M15 10H5M9 6l-4 4 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <button class="cc-portfolio__control" type="button" data-portfolio-next="top" aria-label="Ver proyectos siguientes">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 10h10M11 6l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cc-portfolio__bottom">
+      <div class="cc-portfolio__track-shell">
+        <div class="cc-portfolio__track" data-portfolio-track="bottom">
+          <article class="cc-portfolio-card cc-portfolio-card--corporate">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">05.</span>
+              <h3 class="cc-portfolio-card__title">ManoManitas</h3>
+              <p class="cc-portfolio-card__type">Web de captación de servicios</p>
+            </div>
+          </article>
+
+          <article class="cc-portfolio-card cc-portfolio-card--local">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">06.</span>
+              <h3 class="cc-portfolio-card__title">Trabajos Verticales</h3>
+              <p class="cc-portfolio-card__type">SEO local y conversión</p>
+            </div>
+          </article>
+
+          <article class="cc-portfolio-card cc-portfolio-card--crm">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">07.</span>
+              <h3 class="cc-portfolio-card__title">MatchPoint</h3>
+              <p class="cc-portfolio-card__type">Plataforma web de gestión</p>
+            </div>
+          </article>
+
+          <article class="cc-portfolio-card cc-portfolio-card--corporate">
+            <div class="cc-portfolio-card__visual">
+              <div class="cc-device">
+                <div class="cc-device__screen">
+                  <div class="cc-device__nav"><span></span><span></span><span></span></div>
+                  <div class="cc-device__hero"><b></b><i></i><em></em></div>
+                  <div class="cc-device__blocks"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cc-portfolio-card__body">
+              <span class="cc-portfolio-card__number">08.</span>
+              <h3 class="cc-portfolio-card__title">Fúscio</h3>
+              <p class="cc-portfolio-card__type">Web corporativa profesional</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="cc-portfolio__controls">
+          <button class="cc-portfolio__control" type="button" data-portfolio-prev="bottom" aria-label="Ver proyectos anteriores">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M15 10H5M9 6l-4 4 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <button class="cc-portfolio__control" type="button" data-portfolio-next="bottom" aria-label="Ver proyectos siguientes">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 10h10M11 6l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="cc-portfolio__ambient" aria-hidden="true">portfolio</p>
+    </div>
+
+    <footer class="cc-portfolio__footer">
+      <p>
+        <strong>Cada proyecto responde a un problema concreto.</strong>
+        La tecnología cambia. El objetivo sigue siendo mejorar resultados.
+      </p>
+
+      <a class="cc-portfolio__cta" href="#contacto">
+        <span aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none">
+            <path d="M4.5 10h11M11 5.5 15.5 10 11 14.5"
+              stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Hablar sobre mi proyecto
+      </a>
+    </footer>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const section = document.getElementById("portfolio");
+    if (!section || section.dataset.controlsReady === "true") return;
+
+    section.dataset.controlsReady = "true";
+
+    const moveTrack = (name, direction) => {
+      const track = section.querySelector(`[data-portfolio-track="${name}"]`);
+      if (!track) return;
+
+      const card = track.querySelector(".cc-portfolio-card");
+      const distance = card ? card.getBoundingClientRect().width + 18 : 310;
+
+      track.scrollBy({
+        left: distance * direction,
+        behavior: "smooth"
+      });
+    };
+
+    section.querySelectorAll("[data-portfolio-prev]").forEach((button) => {
+      button.addEventListener("click", () => {
+        moveTrack(button.dataset.portfolioPrev, -1);
+      });
+    });
+
+    section.querySelectorAll("[data-portfolio-next]").forEach((button) => {
+      button.addEventListener("click", () => {
+        moveTrack(button.dataset.portfolioNext, 1);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
