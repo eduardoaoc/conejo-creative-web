@@ -58,7 +58,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <html lang={localeLangTags[locale]} className={inter.variable}>
-      <body className="flex min-h-dvh flex-col">
+      <body className="flex min-h-dvh flex-col" suppressHydrationWarning>
         <NextIntlClientProvider>
           <a
             href="#contenido"

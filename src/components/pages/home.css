@@ -6054,11 +6054,18 @@ h1 span{
      fondo termina de aclararse u oscurecerse justo junto a una costura
      entre secciones. Con stops en % puros, una sección alta hace que ese
      tramo final se recorra muy despacio: el color queda visualmente
-     "plano" durante cientos de píxeles antes del borde y dos secciones así
-     unidas dejan una franja negra ancha que el ojo lee como un bloque
-     aparte. Fijar la distancia en px mantiene el cambio perceptible hasta
-     el borde mismo, sin importar cuán alta sea la sección. */
-  --cc-seam-fade: 180px;
+     "plano" durante cientos de píxeles antes del borde. Fijar la distancia
+     en px mantiene el cambio perceptible hasta el borde mismo, sin
+     importar cuán alta sea la sección.
+
+     Además, un fundido de solo 2 paradas (color → color) cambia de
+     pendiente de golpe al entrar y salir del tramo — ese quiebre de
+     pendiente (aunque el color coincida) también se percibe como un
+     borde. Los stops intermedios de abajo aproximan una curva suave
+     (tipo "smoothstep": pendiente ≈0 en ambos extremos del tramo), para
+     que el fundido entre en y salga sin quiebre hacia el color plano que
+     lo rodea. */
+  --cc-seam-fade: 220px;
 }
 
 /* Base de página y guarda de overflow */
@@ -6067,23 +6074,34 @@ body { background: var(--cc-page-bg); }
 
 /* Transición suave: Propuesta de valor → Soluciones */
 .cc-value {
-  background: linear-gradient(180deg, #020711 0%, #020711 78%, var(--cc-page-bg) 100%);
+  background: linear-gradient(180deg,
+    #020711 0%,
+    #020711 calc(100% - var(--cc-seam-fade)),
+    var(--cc-page-bg) 100%);
 }
 
 /* Transición suave: Soluciones → Resultados (sin salto a #0a1b28 y sin
-   franja plana ancha en la costura) */
+   quiebre de pendiente en la costura) */
 .cc-solutions {
   background: linear-gradient(180deg,
-    #01070e 0%,
-    #020b13 10%,
-    #03131f 48%,
+    var(--cc-page-bg) 0%,
+    #010911 calc(var(--cc-seam-fade) * .25),
+    #020d17 calc(var(--cc-seam-fade) * .5),
+    #03111c calc(var(--cc-seam-fade) * .75),
+    #03131f var(--cc-seam-fade),
     #03131f calc(100% - var(--cc-seam-fade)),
+    #03111c calc(100% - var(--cc-seam-fade) * .75),
+    #020d17 calc(100% - var(--cc-seam-fade) * .5),
+    #010911 calc(100% - var(--cc-seam-fade) * .25),
     var(--cc-page-bg) 100%);
 }
 
 .cc-results {
   background: linear-gradient(180deg,
     var(--cc-page-bg) 0%,
+    #010810 calc(var(--cc-seam-fade) * .25),
+    #020c14 calc(var(--cc-seam-fade) * .5),
+    #030f18 calc(var(--cc-seam-fade) * .75),
     var(--cc-res-bg) var(--cc-seam-fade),
     var(--cc-res-bg-deep) 100%);
 }
@@ -6095,12 +6113,18 @@ body { background: var(--cc-page-bg); }
     #020b13 9%,
     #03131f 43%,
     #03131f calc(100% - var(--cc-seam-fade)),
+    #03111c calc(100% - var(--cc-seam-fade) * .75),
+    #020d17 calc(100% - var(--cc-seam-fade) * .5),
+    #010911 calc(100% - var(--cc-seam-fade) * .25),
     var(--cc-page-bg) 100%);
 }
 
 .cc-support {
   background: linear-gradient(180deg,
     var(--cc-page-bg) 0%,
+    #010911 calc(var(--cc-seam-fade) * .25),
+    #020d17 calc(var(--cc-seam-fade) * .5),
+    #03111c calc(var(--cc-seam-fade) * .75),
     #03131f var(--cc-seam-fade),
     #02101a 75%,
     var(--cc-page-bg) 100%);
