@@ -9,7 +9,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  return createPageMetadata({ locale, namespace: 'meta.home', path: '' });
+  return createPageMetadata({ locale, namespace: 'meta.home', path: '', absoluteTitle: true });
 }
 
 export default async function HomePage({ params }: PageProps) {

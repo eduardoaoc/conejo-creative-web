@@ -6050,6 +6050,15 @@ h1 span{
 :root {
   --cc-page-bg: #01070e;
   --cc-font-accent: Georgia, "Times New Roman", serif;
+  /* Distancia fija (no relativa a la altura de la sección) en la que el
+     fondo termina de aclararse u oscurecerse justo junto a una costura
+     entre secciones. Con stops en % puros, una sección alta hace que ese
+     tramo final se recorra muy despacio: el color queda visualmente
+     "plano" durante cientos de píxeles antes del borde y dos secciones así
+     unidas dejan una franja negra ancha que el ojo lee como un bloque
+     aparte. Fijar la distancia en px mantiene el cambio perceptible hasta
+     el borde mismo, sin importar cuán alta sea la sección. */
+  --cc-seam-fade: 180px;
 }
 
 /* Base de página y guarda de overflow */
@@ -6061,13 +6070,40 @@ body { background: var(--cc-page-bg); }
   background: linear-gradient(180deg, #020711 0%, #020711 78%, var(--cc-page-bg) 100%);
 }
 
-/* Transición suave: Soluciones → Resultados (sin salto a #0a1b28) */
+/* Transición suave: Soluciones → Resultados (sin salto a #0a1b28 y sin
+   franja plana ancha en la costura) */
+.cc-solutions {
+  background: linear-gradient(180deg,
+    #01070e 0%,
+    #020b13 10%,
+    #03131f 48%,
+    #03131f calc(100% - var(--cc-seam-fade)),
+    var(--cc-page-bg) 100%);
+}
+
 .cc-results {
   background: linear-gradient(180deg,
     var(--cc-page-bg) 0%,
-    #071722 14%,
-    var(--cc-res-bg) 30%,
+    var(--cc-res-bg) var(--cc-seam-fade),
     var(--cc-res-bg-deep) 100%);
+}
+
+/* Transición suave: Portfolio → Soporte y formación */
+.cc-portfolio {
+  background: linear-gradient(180deg,
+    #01070e 0%,
+    #020b13 9%,
+    #03131f 43%,
+    #03131f calc(100% - var(--cc-seam-fade)),
+    var(--cc-page-bg) 100%);
+}
+
+.cc-support {
+  background: linear-gradient(180deg,
+    var(--cc-page-bg) 0%,
+    #03131f var(--cc-seam-fade),
+    #02101a 75%,
+    var(--cc-page-bg) 100%);
 }
 
 /* Ícono oficial ConejoCreative (sustituye el SVG de líneas) */

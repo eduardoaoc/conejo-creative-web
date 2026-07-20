@@ -24,12 +24,14 @@ type PageMetadataParams = {
   locale: string;
   namespace: string;
   path: string;
+  absoluteTitle?: boolean;
 };
 
 export async function createPageMetadata({
   locale: requestedLocale,
   namespace,
   path,
+  absoluteTitle = false,
 }: PageMetadataParams): Promise<Metadata> {
   const locale = hasLocale(routing.locales, requestedLocale)
     ? requestedLocale
@@ -40,7 +42,7 @@ export async function createPageMetadata({
   const description = t('description');
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: {
       canonical: localizedUrl(locale, path),
